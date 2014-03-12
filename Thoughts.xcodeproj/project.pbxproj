@@ -19,6 +19,9 @@
 		F24699F018D093AC00FF1A0D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F24699D818D093AC00FF1A0D /* UIKit.framework */; };
 		F24699F818D093AC00FF1A0D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F24699F618D093AC00FF1A0D /* InfoPlist.strings */; };
 		F24699FA18D093AC00FF1A0D /* ThoughtsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F24699F918D093AC00FF1A0D /* ThoughtsTests.m */; };
+		F2827D4018D0956D00B97876 /* THDummyThoughtsProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F2827D3F18D0956D00B97876 /* THDummyThoughtsProvider.m */; };
+		F2827D4418D0965200B97876 /* THDefaultAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = F2827D4318D0965200B97876 /* THDefaultAssembly.m */; };
+		F2827D4A18D096F200B97876 /* THThoughtsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2827D4918D096F200B97876 /* THThoughtsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +51,14 @@
 		F24699F518D093AC00FF1A0D /* ThoughtsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ThoughtsTests-Info.plist"; sourceTree = "<group>"; };
 		F24699F718D093AC00FF1A0D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F24699F918D093AC00FF1A0D /* ThoughtsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThoughtsTests.m; sourceTree = "<group>"; };
+		F2827D3D18D0953C00B97876 /* THThoughtsProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = THThoughtsProvider.h; sourceTree = "<group>"; };
+		F2827D3E18D0956D00B97876 /* THDummyThoughtsProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THDummyThoughtsProvider.h; sourceTree = "<group>"; };
+		F2827D3F18D0956D00B97876 /* THDummyThoughtsProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THDummyThoughtsProvider.m; sourceTree = "<group>"; };
+		F2827D4118D0964A00B97876 /* THAssembly.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = THAssembly.h; sourceTree = "<group>"; };
+		F2827D4218D0965200B97876 /* THDefaultAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THDefaultAssembly.h; sourceTree = "<group>"; };
+		F2827D4318D0965200B97876 /* THDefaultAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THDefaultAssembly.m; sourceTree = "<group>"; };
+		F2827D4818D096F200B97876 /* THThoughtsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THThoughtsViewController.h; sourceTree = "<group>"; };
+		F2827D4918D096F200B97876 /* THThoughtsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THThoughtsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,8 +118,10 @@
 		F24699DA18D093AC00FF1A0D /* Thoughts */ = {
 			isa = PBXGroup;
 			children = (
-				F24699E318D093AC00FF1A0D /* THAppDelegate.h */,
-				F24699E418D093AC00FF1A0D /* THAppDelegate.m */,
+				F2827D4718D096D800B97876 /* AppDelegate */,
+				F2827D4B18D0971A00B97876 /* ThoughtsViewController */,
+				F2827D4518D096BD00B97876 /* Assembly */,
+				F2827D4618D096C300B97876 /* ThoughtsProvider */,
 				F24699E618D093AC00FF1A0D /* Images.xcassets */,
 				F24699DB18D093AC00FF1A0D /* Supporting Files */,
 			);
@@ -142,6 +155,60 @@
 				F24699F618D093AC00FF1A0D /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F2827D4518D096BD00B97876 /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				F2827D4118D0964A00B97876 /* THAssembly.h */,
+				F2827D4C18D0972C00B97876 /* Default */,
+			);
+			name = Assembly;
+			sourceTree = "<group>";
+		};
+		F2827D4618D096C300B97876 /* ThoughtsProvider */ = {
+			isa = PBXGroup;
+			children = (
+				F2827D3D18D0953C00B97876 /* THThoughtsProvider.h */,
+				F2827D4D18D0973200B97876 /* Dummy */,
+			);
+			name = ThoughtsProvider;
+			sourceTree = "<group>";
+		};
+		F2827D4718D096D800B97876 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				F24699E318D093AC00FF1A0D /* THAppDelegate.h */,
+				F24699E418D093AC00FF1A0D /* THAppDelegate.m */,
+			);
+			name = AppDelegate;
+			sourceTree = "<group>";
+		};
+		F2827D4B18D0971A00B97876 /* ThoughtsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F2827D4818D096F200B97876 /* THThoughtsViewController.h */,
+				F2827D4918D096F200B97876 /* THThoughtsViewController.m */,
+			);
+			name = ThoughtsViewController;
+			sourceTree = "<group>";
+		};
+		F2827D4C18D0972C00B97876 /* Default */ = {
+			isa = PBXGroup;
+			children = (
+				F2827D4218D0965200B97876 /* THDefaultAssembly.h */,
+				F2827D4318D0965200B97876 /* THDefaultAssembly.m */,
+			);
+			name = Default;
+			sourceTree = "<group>";
+		};
+		F2827D4D18D0973200B97876 /* Dummy */ = {
+			isa = PBXGroup;
+			children = (
+				F2827D3E18D0956D00B97876 /* THDummyThoughtsProvider.h */,
+				F2827D3F18D0956D00B97876 /* THDummyThoughtsProvider.m */,
+			);
+			name = Dummy;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -241,7 +308,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F24699E518D093AC00FF1A0D /* THAppDelegate.m in Sources */,
+				F2827D4018D0956D00B97876 /* THDummyThoughtsProvider.m in Sources */,
+				F2827D4A18D096F200B97876 /* THThoughtsViewController.m in Sources */,
 				F24699E118D093AC00FF1A0D /* main.m in Sources */,
+				F2827D4418D0965200B97876 /* THDefaultAssembly.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,6 +508,7 @@
 				F24699FF18D093AC00FF1A0D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F2469A0018D093AC00FF1A0D /* Build configuration list for PBXNativeTarget "ThoughtsTests" */ = {
 			isa = XCConfigurationList;
@@ -446,6 +517,7 @@
 				F2469A0218D093AC00FF1A0D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

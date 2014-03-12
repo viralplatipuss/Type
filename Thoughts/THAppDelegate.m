@@ -7,14 +7,24 @@
 //
 
 #import "THAppDelegate.h"
+#import "THDefaultAssembly.h"
 
 @implementation THAppDelegate
+
+-(void)startApp
+{
+    self.window.backgroundColor = [UIColor whiteColor];
+    
+    id <THAssembly> assembly = [[THDefaultAssembly alloc] init];
+    self.window.rootViewController = assembly.viewController;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
+
+    [self startApp];
+    
     [self.window makeKeyAndVisible];
     return YES;
 }

@@ -7,6 +7,7 @@
 //
 
 #import "THDefaultAssembly.h"
+#import "THThoughtsViewController.h"
 
 @implementation THDefaultAssembly
 
@@ -15,7 +16,7 @@
 -(UIViewController *)viewController
 {
     if(!_viewController) {
-        
+        _viewController = [[THThoughtsViewController alloc] init];
     }
     
     return _viewController;

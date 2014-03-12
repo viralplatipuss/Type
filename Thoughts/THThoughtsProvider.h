@@ -10,6 +10,8 @@
 
 @protocol THThoughtsProvider <NSObject>
 
--(NSArray *)allThoughts; //Array of NSStrings
+@property (nonatomic, assign, readonly) NSUInteger totalThoughts;
+
+-(NSString *)thoughtForUid:(NSUInteger)uid;
 
 @end

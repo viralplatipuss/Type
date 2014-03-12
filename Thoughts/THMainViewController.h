@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "THThoughtsProvider.h"
 
-@interface THThoughtsViewController : UIViewController
+@interface THMainViewController : UIViewController
+
+-(instancetype)initWithThoughtsProvider:(id <THThoughtsProvider>)thoughtsProvider;
 
 @end

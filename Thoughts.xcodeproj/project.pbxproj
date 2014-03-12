@@ -21,7 +21,9 @@
 		F24699FA18D093AC00FF1A0D /* ThoughtsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F24699F918D093AC00FF1A0D /* ThoughtsTests.m */; };
 		F2827D4018D0956D00B97876 /* THDummyThoughtsProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F2827D3F18D0956D00B97876 /* THDummyThoughtsProvider.m */; };
 		F2827D4418D0965200B97876 /* THDefaultAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = F2827D4318D0965200B97876 /* THDefaultAssembly.m */; };
-		F2827D4A18D096F200B97876 /* THThoughtsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2827D4918D096F200B97876 /* THThoughtsViewController.m */; };
+		F2827D4A18D096F200B97876 /* THMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2827D4918D096F200B97876 /* THMainViewController.m */; };
+		F2827D5018D0988700B97876 /* THThoughtView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2827D4F18D0988700B97876 /* THThoughtView.m */; };
+		F2827D5318D0C30100B97876 /* THMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2827D5218D0C30100B97876 /* THMainView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,8 +59,12 @@
 		F2827D4118D0964A00B97876 /* THAssembly.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = THAssembly.h; sourceTree = "<group>"; };
 		F2827D4218D0965200B97876 /* THDefaultAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THDefaultAssembly.h; sourceTree = "<group>"; };
 		F2827D4318D0965200B97876 /* THDefaultAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THDefaultAssembly.m; sourceTree = "<group>"; };
-		F2827D4818D096F200B97876 /* THThoughtsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THThoughtsViewController.h; sourceTree = "<group>"; };
-		F2827D4918D096F200B97876 /* THThoughtsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THThoughtsViewController.m; sourceTree = "<group>"; };
+		F2827D4818D096F200B97876 /* THMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THMainViewController.h; sourceTree = "<group>"; };
+		F2827D4918D096F200B97876 /* THMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THMainViewController.m; sourceTree = "<group>"; };
+		F2827D4E18D0988700B97876 /* THThoughtView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THThoughtView.h; sourceTree = "<group>"; };
+		F2827D4F18D0988700B97876 /* THThoughtView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THThoughtView.m; sourceTree = "<group>"; };
+		F2827D5118D0C30100B97876 /* THMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THMainView.h; sourceTree = "<group>"; };
+		F2827D5218D0C30100B97876 /* THMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THMainView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,9 +125,11 @@
 			isa = PBXGroup;
 			children = (
 				F2827D4718D096D800B97876 /* AppDelegate */,
-				F2827D4B18D0971A00B97876 /* ThoughtsViewController */,
 				F2827D4518D096BD00B97876 /* Assembly */,
-				F2827D4618D096C300B97876 /* ThoughtsProvider */,
+				F2827D4B18D0971A00B97876 /* MainViewController */,
+				F2827D5418D0C30400B97876 /* MainView */,
+				F2827D5518D0C30F00B97876 /* ThoughtView */,
+				F2827D5618D0C33100B97876 /* Domain */,
 				F24699E618D093AC00FF1A0D /* Images.xcassets */,
 				F24699DB18D093AC00FF1A0D /* Supporting Files */,
 			);
@@ -184,13 +192,13 @@
 			name = AppDelegate;
 			sourceTree = "<group>";
 		};
-		F2827D4B18D0971A00B97876 /* ThoughtsViewController */ = {
+		F2827D4B18D0971A00B97876 /* MainViewController */ = {
 			isa = PBXGroup;
 			children = (
-				F2827D4818D096F200B97876 /* THThoughtsViewController.h */,
-				F2827D4918D096F200B97876 /* THThoughtsViewController.m */,
+				F2827D4818D096F200B97876 /* THMainViewController.h */,
+				F2827D4918D096F200B97876 /* THMainViewController.m */,
 			);
-			name = ThoughtsViewController;
+			name = MainViewController;
 			sourceTree = "<group>";
 		};
 		F2827D4C18D0972C00B97876 /* Default */ = {
@@ -209,6 +217,32 @@
 				F2827D3F18D0956D00B97876 /* THDummyThoughtsProvider.m */,
 			);
 			name = Dummy;
+			sourceTree = "<group>";
+		};
+		F2827D5418D0C30400B97876 /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				F2827D5118D0C30100B97876 /* THMainView.h */,
+				F2827D5218D0C30100B97876 /* THMainView.m */,
+			);
+			name = MainView;
+			sourceTree = "<group>";
+		};
+		F2827D5518D0C30F00B97876 /* ThoughtView */ = {
+			isa = PBXGroup;
+			children = (
+				F2827D4E18D0988700B97876 /* THThoughtView.h */,
+				F2827D4F18D0988700B97876 /* THThoughtView.m */,
+			);
+			name = ThoughtView;
+			sourceTree = "<group>";
+		};
+		F2827D5618D0C33100B97876 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				F2827D4618D096C300B97876 /* ThoughtsProvider */,
+			);
+			name = Domain;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -309,8 +343,10 @@
 			files = (
 				F24699E518D093AC00FF1A0D /* THAppDelegate.m in Sources */,
 				F2827D4018D0956D00B97876 /* THDummyThoughtsProvider.m in Sources */,
-				F2827D4A18D096F200B97876 /* THThoughtsViewController.m in Sources */,
+				F2827D5018D0988700B97876 /* THThoughtView.m in Sources */,
+				F2827D4A18D096F200B97876 /* THMainViewController.m in Sources */,
 				F24699E118D093AC00FF1A0D /* main.m in Sources */,
+				F2827D5318D0C30100B97876 /* THMainView.m in Sources */,
 				F2827D4418D0965200B97876 /* THDefaultAssembly.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

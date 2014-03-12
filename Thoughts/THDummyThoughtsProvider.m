@@ -10,14 +10,23 @@
 
 @implementation THDummyThoughtsProvider
 
--(NSArray *)allThoughts
+-(NSString *)thoughtForUid:(NSUInteger)uid
 {
-    NSArray *thoughts = @[@"Portfolio Apps",
-                          @"Gym",
-                          @"Learning Chinese"
-                          ];
-    
-    return thoughts;
+    switch (uid) {
+        case 0:
+            return @"Portfolio Apps";
+        case 1:
+            return @"Gym";
+        case 2:
+            return @"Learning Chinese";
+        default:
+            return nil;
+    }
+}
+
+-(NSUInteger)totalThoughts
+{
+    return 3;
 }
 
 @end

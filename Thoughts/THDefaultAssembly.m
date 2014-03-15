@@ -8,34 +8,38 @@
 
 #import "THDefaultAssembly.h"
 #import "THMainViewController.h"
-#import "THDummyThoughtsProvider.h"
+#import "THCoreDataThoughtContext.h"
+
+
+static NSString * const kCoreDataThoughtContextSQLDBName = @"Thoughts";
+
 
 @interface THDefaultAssembly()
 
-@property (nonatomic, strong, readonly) id <THThoughtsProvider> thoughtsProvider;
+@property (nonatomic, strong, readonly) id <THThoughtContext> thoughtContext;
 
 @end
 
 @implementation THDefaultAssembly
 
-@synthesize viewController = _viewController, thoughtsProvider = _thoughtsProvider;
-
--(id <THThoughtsProvider>)thoughtsProvider
-{
-    if(!_thoughtsProvider) {
-        _thoughtsProvider = [[THDummyThoughtsProvider alloc] init];
-    }
-    
-    return _thoughtsProvider;
-}
+@synthesize viewController = _viewController, thoughtContext = _thoughtContext;
 
 -(UIViewController *)viewController
 {
     if(!_viewController) {
-        _viewController = [[THMainViewController alloc] initWithThoughtsProvider:self.thoughtsProvider];
+        _viewController = [[THMainViewController alloc] initWithThoughtContext:self.thoughtContext];
     }
     
     return _viewController;
+}
+
+-(id <THThoughtContext>)thoughtContext
+{
+    if(!_thoughtContext) {
+        _thoughtContext = [[THCoreDataThoughtContext alloc] initWithCoreDataSQLDatabaseName:kCoreDataThoughtContextSQLDBName];
+    }
+    
+    return _thoughtContext;
 }
 
 @end

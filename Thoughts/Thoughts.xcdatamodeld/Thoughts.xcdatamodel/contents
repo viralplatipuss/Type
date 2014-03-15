@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5059" systemVersion="13B42" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="THCoreDataThought" representedClassName="THCoreDataThought" syncable="YES">
+        <attribute name="text" attributeType="String" syncable="YES"/>
+        <relationship name="nextThought" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="THCoreDataThought" inverseName="previousThought" inverseEntity="THCoreDataThought" syncable="YES"/>
+        <relationship name="previousThought" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="THCoreDataThought" inverseName="nextThought" inverseEntity="THCoreDataThought" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="THCoreDataThought" positionX="0" positionY="0" width="128" height="88"/>
+    </elements>
+</model>

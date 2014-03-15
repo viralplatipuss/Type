@@ -9,24 +9,24 @@
 #import "THMainViewController.h"
 #import "THMainView.h"
 
-@interface THMainViewController () <UIScrollViewDelegate, UIKeyInput>
+@interface THMainViewController () <UIScrollViewDelegate, UIKeyInput, THThoughtViewDelegate>
 
 @property (nonatomic, strong, readonly) THMainView *mainView;
 
-@property (nonatomic, strong, readonly) id <THThoughtsProvider> thoughtsProvider;
+@property (nonatomic, strong, readonly) id <THThoughtContext> thoughtContext;
 
-@property (nonatomic, assign, readwrite) NSUInteger thoughtIndex;
+@property (nonatomic, strong, readwrite) id <THThought> thought;
 
 @end
 
 @implementation THMainViewController
 
-@synthesize mainView = _mainView, thoughtsProvider = _thoughtsProvider, thoughtIndex = _thoughtIndex;
+@synthesize mainView = _mainView, thoughtContext = _thoughtContext, thought = _thought;
 
--(instancetype)initWithThoughtsProvider:(id<THThoughtsProvider>)thoughtsProvider
+-(instancetype)initWithThoughtContext:(id<THThoughtContext>)thoughtContext
 {
     if(self = [super init]) {
-        _thoughtsProvider = thoughtsProvider;
+        _thoughtContext = thoughtContext;
     }
     
     return self;
@@ -41,9 +41,11 @@
 {
     [super viewDidLoad];
     
-    self.mainView.emptyScrollView.delegate = self;
+    self.thought = [self.thoughtContext firstThought];
     
-    [self updateThought];
+    self.mainView.emptyScrollView.delegate = self;
+    self.mainView.thoughtView.delegate = self;
+    
     
     [self becomeFirstResponder];
 }
@@ -72,11 +74,12 @@
     return NO;
 }
 
--(void)updateThought
+-(void)setThought:(id<THThought>)thought
 {
-    NSString *thought = [self.thoughtsProvider thoughtForUid:self.thoughtIndex];
+    //NSLog(@"%@",thought);
+    _thought = thought;
     
-    self.mainView.thoughtView.thoughtText = thought;
+    self.mainView.thoughtView.thoughtText = _thought.text;
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -84,7 +87,7 @@
     CGPoint contentOffset = scrollView.contentOffset;
     CGFloat pageWidth = CGRectGetWidth(scrollView.frame);
     
-    if(contentOffset.x >= pageWidth) {
+    if(contentOffset.x >= pageWidth*2) {
         contentOffset.x -= pageWidth;
         scrollView.contentOffset = contentOffset;
         
@@ -92,14 +95,36 @@
             return;
         }
         
-        self.thoughtIndex ++;
-        if(self.thoughtIndex >= self.thoughtsProvider.totalThoughts) {
-            self.thoughtIndex = 0;
-        }
-        
-        [self updateThought];
+        self.thought = self.thought.nextThought;
         
     }
+    
+    if(contentOffset.x <= 0) {
+        contentOffset.x += pageWidth;
+        scrollView.contentOffset = contentOffset;
+        
+        if([self.mainView.thoughtView isFirstResponder]) {
+            return;
+        }
+        
+        self.thought = self.thought.previousThought;
+        //Chinese    app ideas
+    }
+    
+}
+
+-(BOOL)thoughtViewShouldEndEditing:(THThoughtView *)thoughtView
+{
+    THThoughtSpecification *newThoughtSpecification = [THThoughtSpecification new];
+    newThoughtSpecification.text = thoughtView.thoughtText;
+    
+    if(self.thought) {
+        self.thought = [self.thought createThoughtAfterThisWithSpecification:newThoughtSpecification];
+    }else {
+        self.thought = [self.thoughtContext createThoughtWithSpecification:newThoughtSpecification];
+    }
+    
+    return YES;
 }
 
 -(THMainView *)mainView

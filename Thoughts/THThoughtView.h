@@ -20,6 +20,7 @@
 
 @protocol THThoughtViewDelegate <NSObject>
 
+@optional
 -(BOOL)thoughtViewShouldEndEditing:(THThoughtView *)thoughtView;
 
 @end

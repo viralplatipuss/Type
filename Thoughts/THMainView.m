@@ -49,8 +49,9 @@
         
         //TEMP
         CGSize size = [UIScreen mainScreen].bounds.size;
-        size.width *= 2;
+        size.width *= 3;
         _emptyScrollView.contentSize = size;
+        _emptyScrollView.contentOffset = CGPointMake(size.width, 0);
     }
     
     return _emptyScrollView;

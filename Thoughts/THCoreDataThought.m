@@ -30,7 +30,6 @@
 
 -(id <THThought>)createThoughtAfterThisWithSpecification:(THThoughtSpecification *)thoughtSpecification
 {
-    NSLog(@"thoughtContext: %@",self.thoughtContext);
     if(!self.thoughtContext) return nil;
     return [self.thoughtContext createThoughtWithSpecification:thoughtSpecification afterThought:self];
 }

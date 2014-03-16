@@ -9,6 +9,8 @@
 #import "THMainViewController.h"
 #import "THMainView.h"
 
+#import "THSingleCharacterTextView.h" //temp
+
 @interface THMainViewController () <UIScrollViewDelegate, UIKeyInput, THThoughtViewDelegate>
 
 @property (nonatomic, strong, readonly) THMainView *mainView;
@@ -41,13 +43,26 @@
 {
     [super viewDidLoad];
     
-    self.thought = [self.thoughtContext firstThought];
+    self.thought = [self.thoughtContext anyThought];
     
     self.mainView.emptyScrollView.delegate = self;
     self.mainView.thoughtView.delegate = self;
     
-    
     [self becomeFirstResponder];
+    
+    
+    //TEMP
+    /*
+    self.mainView.thoughtView.hidden = YES;
+    
+    THSingleCharacterTextView *scv = [[THSingleCharacterTextView alloc] initWithWidth:50];
+    
+    scv.text = @"Hello everyone and\nwelcome to my party!";
+    
+    [self.view addSubview:scv];
+    
+    scv.center = CGPointMake(170, 200);
+    */
 }
 
 -(BOOL)canBecomeFirstResponder
@@ -58,6 +73,18 @@
 -(void)insertText:(NSString *)text
 {
     if ([text isEqualToString:@"\n"]) {
+        return;
+    }
+    
+    if ([text isEqualToString:@"p"]) {
+        NSLog(@"P-NEXT-P");
+        self.thought = self.thought.nextThought;
+        return;
+    }
+    
+    if ([text isEqualToString:@"w"]) {
+        NSLog(@"W-NEXT-W");
+        self.thought = self.thought.previousThought;
         return;
     }
     
@@ -76,10 +103,9 @@
 
 -(void)setThought:(id<THThought>)thought
 {
-    //NSLog(@"%@",thought);
     _thought = thought;
     
-    self.mainView.thoughtView.thoughtText = _thought.text;
+    self.mainView.thoughtView.thoughtText = self.thought.text;
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -108,7 +134,6 @@
         }
         
         self.thought = self.thought.previousThought;
-        //Chinese    app ideas
     }
     
 }

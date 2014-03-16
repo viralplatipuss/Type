@@ -11,8 +11,7 @@
 #import "THCoreDataThoughtContext.h"
 
 
-static NSString * const kCoreDataThoughtContextSQLDBName = @"Thoughts";
-
+static NSString * const kCoreDataThoughtContextSQLDBName = @"Thoughts.sqlite";
 
 @interface THDefaultAssembly()
 
@@ -36,7 +35,10 @@ static NSString * const kCoreDataThoughtContextSQLDBName = @"Thoughts";
 -(id <THThoughtContext>)thoughtContext
 {
     if(!_thoughtContext) {
-        _thoughtContext = [[THCoreDataThoughtContext alloc] initWithCoreDataSQLDatabaseName:kCoreDataThoughtContextSQLDBName];
+        NSURL *applicationDocumentsDirectory = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+        NSURL *coreDataSQLDatabaseURL = [applicationDocumentsDirectory URLByAppendingPathComponent:kCoreDataThoughtContextSQLDBName];
+        
+        _thoughtContext = [[THCoreDataThoughtContext alloc] initWithPersistentStoreType:NSSQLiteStoreType URL:coreDataSQLDatabaseURL];
     }
     
     return _thoughtContext;

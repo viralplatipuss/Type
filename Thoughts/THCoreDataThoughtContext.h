@@ -13,7 +13,7 @@
 
 @interface THCoreDataThoughtContext : NSObject <THThoughtContext>
 
--(instancetype)initWithCoreDataSQLDatabaseName:(NSString *)coreDataSQLDatabaseName;
+-(instancetype)initWithPersistentStoreType:(NSString *)storeType URL:(NSURL *)url;
 
 //Thought parameter of the following methods must relate to thoughts in this context. Else the methods will fail (gracefully).
 

@@ -12,7 +12,7 @@
 
 @protocol THThoughtContext <NSObject>
 
--(id <THThought>)firstThought;
+-(id <THThought>)anyThought;
 
 -(id <THThought>)thoughtForUnqiueToken:(NSString *)uniqueToken;
 

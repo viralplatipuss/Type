@@ -14,7 +14,9 @@ static NSString * const kThoughtsDataModelFileName = @"Thoughts";
 
 @interface THCoreDataThoughtContext()
 
-@property (nonatomic, copy, readonly) NSString *coreDataSQLDatabaseName;
+@property (nonatomic, copy, readonly) NSString *persistentStoreType;
+
+@property (nonatomic, copy, readonly) NSURL *persistentStoreURL;
 
 @property (nonatomic, strong, readonly) NSManagedObjectContext *managedObjectContext;
 
@@ -26,16 +28,17 @@ static NSString * const kThoughtsDataModelFileName = @"Thoughts";
 
 @implementation THCoreDataThoughtContext
 
-@synthesize coreDataSQLDatabaseName = _coreDataSQLDatabaseName, managedObjectContext = _managedObjectContext, managedObjectModel = _managedObjectModel, persistentStoreCoordinator = _persistentStoreCoordinator;
+@synthesize persistentStoreType = _persistentStoreType, persistentStoreURL = _persistentStoreURL, managedObjectContext = _managedObjectContext, managedObjectModel = _managedObjectModel, persistentStoreCoordinator = _persistentStoreCoordinator;
 
 
 #pragma mark - Init
 
--(instancetype)initWithCoreDataSQLDatabaseName:(NSString *)coreDataSQLDatabaseName
+-(instancetype)initWithPersistentStoreType:(NSString *)storeType URL:(NSURL *)url
 {
     self = [super init];
     if(self) {
-        _coreDataSQLDatabaseName = coreDataSQLDatabaseName;
+        _persistentStoreType = storeType;
+        _persistentStoreURL = url;
     }
     return self;
 }
@@ -43,7 +46,7 @@ static NSString * const kThoughtsDataModelFileName = @"Thoughts";
 
 #pragma mark - Public Protocol Methods
 
--(THCoreDataThought *)firstThought
+-(THCoreDataThought *)anyThought
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     
@@ -53,12 +56,14 @@ static NSString * const kThoughtsDataModelFileName = @"Thoughts";
     NSError *fetchError;
     NSArray *fetchedObjects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&fetchError];
     
-    if(![fetchedObjects count]) {
-        
+    if(!fetchedObjects) {
         if(fetchError) {
             NSLog(@"FirstThought Fetch Error: %@", [fetchError localizedDescription]);
         }
-        
+        return nil;
+    }
+    
+    if([fetchedObjects count] < 1) {
         return nil;
     }
     
@@ -83,7 +88,7 @@ static NSString * const kThoughtsDataModelFileName = @"Thoughts";
 
 -(THCoreDataThought *)createThoughtWithSpecification:(THThoughtSpecification *)thoughtSpecification
 {
-    THCoreDataThought *firstThought = [self firstThought];
+    THCoreDataThought *firstThought = [self anyThought];
     
     if(firstThought) {
         return [self createThoughtWithSpecification:thoughtSpecification afterThought:firstThought.nextThought];
@@ -216,12 +221,11 @@ static NSString * const kThoughtsDataModelFileName = @"Thoughts";
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator
 {
     if (!_persistentStoreCoordinator) {
-        NSString *databaseFileName = [self.coreDataSQLDatabaseName stringByAppendingString:@".sqlite"];
-        NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:databaseFileName];
-        
+
         NSError *error = nil;
         _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-        if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
+        
+        if (![_persistentStoreCoordinator addPersistentStoreWithType:self.persistentStoreType configuration:nil URL:self.persistentStoreURL options:nil error:&error]) {
             /*
              Replace this implementation with code to handle the error appropriately.
              
@@ -252,14 +256,5 @@ static NSString * const kThoughtsDataModelFileName = @"Thoughts";
     
     return _persistentStoreCoordinator;
 }
-
-#pragma mark - Application's Documents directory
-
-// Returns the URL to the application's Documents directory.
-- (NSURL *)applicationDocumentsDirectory
-{
-    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-}
-
 
 @end

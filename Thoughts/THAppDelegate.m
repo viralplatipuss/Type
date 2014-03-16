@@ -11,11 +11,12 @@
 
 @implementation THAppDelegate
 
+
 -(void)startApp
 {
     self.window.backgroundColor = [UIColor whiteColor];
     
-    id <THAssembly> assembly = [[THDefaultAssembly alloc] init];
+    id <THAssembly> assembly = [THDefaultAssembly new];
     self.window.rootViewController = assembly.viewController;
 }
 

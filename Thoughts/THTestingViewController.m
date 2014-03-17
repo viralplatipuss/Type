@@ -8,38 +8,39 @@
 
 #import "THTestingViewController.h"
 
-#import "THSingleCharacterTextView.h"
+#import "TYIndividualCharacterLabelsView.h"
 
 @interface THTestingViewController ()
+
+@property (nonatomic, strong, readwrite) TYIndividualCharacterLabelsView *sctv;
 
 @end
 
 @implementation THTestingViewController
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-
+    self.sctv = [TYIndividualCharacterLabelsView new];
     
+    NSString *testString = @"Hello. This is a test.\nNew line.\nThis matches UILabel.";
     
+    self.sctv.text = testString;
     
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    NSLog(@"%@",[testString substringWithRange:NSMakeRange(34, 1)]);
+    
+    [self.view addSubview:self.sctv];
+    
+    self.sctv.center = CGPointMake(150, 200);
+    
+    UILabel *test = [self.sctv labelForCharacterAtIndex:34];
+    test.backgroundColor = [UIColor redColor];
+    
+    test = [self.sctv labelForCharacterAtIndex:12];
+    test.backgroundColor = [UIColor yellowColor];
+    
 }
 
 @end

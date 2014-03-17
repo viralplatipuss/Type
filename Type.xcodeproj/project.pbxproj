@@ -21,7 +21,6 @@
 		F2827D9D18D2064E00B97876 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2827D8018D2064E00B97876 /* UIKit.framework */; };
 		F2827D9E18D2064E00B97876 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2827D8218D2064E00B97876 /* CoreData.framework */; };
 		F2827DA618D2064E00B97876 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F2827DA418D2064E00B97876 /* InfoPlist.strings */; };
-		F2827DA818D2064E00B97876 /* ThoughtsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F2827DA718D2064E00B97876 /* ThoughtsTests.m */; };
 		F2827DB318D20CC400B97876 /* THCoreDataThought.m in Sources */ = {isa = PBXBuildFile; fileRef = F2827DB218D20CC400B97876 /* THCoreDataThought.m */; };
 		F2827DBC18D242E100B97876 /* THCoreDataThoughtContext.m in Sources */ = {isa = PBXBuildFile; fileRef = F2827DBB18D242E100B97876 /* THCoreDataThoughtContext.m */; };
 		F2827DC418D3867200B97876 /* THThoughtSpecification.m in Sources */ = {isa = PBXBuildFile; fileRef = F2827DC318D3867200B97876 /* THThoughtSpecification.m */; };
@@ -31,7 +30,7 @@
 		F2C6D81B18D3CA8800265BF3 /* THMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C6D81518D3CA8800265BF3 /* THMainViewController.m */; };
 		F2C6D81C18D3CA8800265BF3 /* THMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C6D81718D3CA8800265BF3 /* THMainView.m */; };
 		F2C6D81D18D3CA8800265BF3 /* THThoughtView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C6D81918D3CA8800265BF3 /* THThoughtView.m */; };
-		F2D237BD18D4735D003D7BA6 /* THSingleCharacterTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D237BC18D4735D003D7BA6 /* THSingleCharacterTextView.m */; };
+		F2D237BD18D4735D003D7BA6 /* TYIndividualCharacterLabelsView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D237BC18D4735D003D7BA6 /* TYIndividualCharacterLabelsView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,24 +44,23 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		F2827D7918D2064E00B97876 /* Thoughts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Thoughts.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2827D7918D2064E00B97876 /* Type.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Type.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2827D7C18D2064E00B97876 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F2827D7E18D2064E00B97876 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		F2827D8018D2064E00B97876 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F2827D8218D2064E00B97876 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		F2827D8618D2064E00B97876 /* Thoughts-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Thoughts-Info.plist"; sourceTree = "<group>"; };
+		F2827D8618D2064E00B97876 /* Type-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Type-Info.plist"; sourceTree = "<group>"; };
 		F2827D8818D2064E00B97876 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F2827D8A18D2064E00B97876 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		F2827D8C18D2064E00B97876 /* Thoughts-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Thoughts-Prefix.pch"; sourceTree = "<group>"; };
+		F2827D8C18D2064E00B97876 /* Type-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Type-Prefix.pch"; sourceTree = "<group>"; };
 		F2827D8D18D2064E00B97876 /* THAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = THAppDelegate.h; sourceTree = "<group>"; };
 		F2827D8E18D2064E00B97876 /* THAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = THAppDelegate.m; sourceTree = "<group>"; };
 		F2827D9118D2064E00B97876 /* Thoughts.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Thoughts.xcdatamodel; sourceTree = "<group>"; };
 		F2827D9318D2064E00B97876 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		F2827D9918D2064E00B97876 /* ThoughtsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ThoughtsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2827D9918D2064E00B97876 /* TypeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TypeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2827D9A18D2064E00B97876 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		F2827DA318D2064E00B97876 /* ThoughtsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ThoughtsTests-Info.plist"; sourceTree = "<group>"; };
+		F2827DA318D2064E00B97876 /* TypeTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TypeTests-Info.plist"; sourceTree = "<group>"; };
 		F2827DA518D2064E00B97876 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		F2827DA718D2064E00B97876 /* ThoughtsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThoughtsTests.m; sourceTree = "<group>"; };
 		F2827DB118D20CC400B97876 /* THCoreDataThought.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THCoreDataThought.h; sourceTree = "<group>"; };
 		F2827DB218D20CC400B97876 /* THCoreDataThought.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THCoreDataThought.m; sourceTree = "<group>"; };
 		F2827DB418D23D7400B97876 /* THThought.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = THThought.h; sourceTree = "<group>"; };
@@ -83,8 +81,8 @@
 		F2C6D81718D3CA8800265BF3 /* THMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THMainView.m; sourceTree = "<group>"; };
 		F2C6D81818D3CA8800265BF3 /* THThoughtView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THThoughtView.h; sourceTree = "<group>"; };
 		F2C6D81918D3CA8800265BF3 /* THThoughtView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THThoughtView.m; sourceTree = "<group>"; };
-		F2D237BB18D4735D003D7BA6 /* THSingleCharacterTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THSingleCharacterTextView.h; sourceTree = "<group>"; };
-		F2D237BC18D4735D003D7BA6 /* THSingleCharacterTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THSingleCharacterTextView.m; sourceTree = "<group>"; };
+		F2D237BB18D4735D003D7BA6 /* TYIndividualCharacterLabelsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYIndividualCharacterLabelsView.h; sourceTree = "<group>"; };
+		F2D237BC18D4735D003D7BA6 /* TYIndividualCharacterLabelsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYIndividualCharacterLabelsView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,8 +114,9 @@
 		F2827D7018D2064E00B97876 = {
 			isa = PBXGroup;
 			children = (
-				F2827D8418D2064E00B97876 /* Thoughts */,
-				F2827DA118D2064E00B97876 /* ThoughtsTests */,
+				F2F43F6818D77CEA00EF5A0A /* Common */,
+				F2827D8418D2064E00B97876 /* Type */,
+				F2827DA118D2064E00B97876 /* TypeTests */,
 				F2827D7B18D2064E00B97876 /* Frameworks */,
 				F2827D7A18D2064E00B97876 /* Products */,
 			);
@@ -126,8 +125,8 @@
 		F2827D7A18D2064E00B97876 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F2827D7918D2064E00B97876 /* Thoughts.app */,
-				F2827D9918D2064E00B97876 /* ThoughtsTests.xctest */,
+				F2827D7918D2064E00B97876 /* Type.app */,
+				F2827D9918D2064E00B97876 /* TypeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -144,15 +143,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		F2827D8418D2064E00B97876 /* Thoughts */ = {
+		F2827D8418D2064E00B97876 /* Type */ = {
 			isa = PBXGroup;
 			children = (
 				F2C6D81018D3C9A700265BF3 /* AppDelegate */,
 				F2C6D81E18D3CABE00265BF3 /* Assembly */,
 				F2C6D81418D3CA8800265BF3 /* THMainViewController.h */,
 				F2C6D81518D3CA8800265BF3 /* THMainViewController.m */,
-				F2D237BB18D4735D003D7BA6 /* THSingleCharacterTextView.h */,
-				F2D237BC18D4735D003D7BA6 /* THSingleCharacterTextView.m */,
 				F2C6D81618D3CA8800265BF3 /* THMainView.h */,
 				F2C6D81718D3CA8800265BF3 /* THMainView.m */,
 				F2C6D81818D3CA8800265BF3 /* THThoughtView.h */,
@@ -162,6 +159,7 @@
 				F2827DB618D240CC00B97876 /* Domain */,
 				F2827D8518D2064E00B97876 /* Supporting Files */,
 			);
+			name = Type;
 			path = Thoughts;
 			sourceTree = "<group>";
 		};
@@ -169,28 +167,28 @@
 			isa = PBXGroup;
 			children = (
 				F2827D9318D2064E00B97876 /* Images.xcassets */,
-				F2827D8618D2064E00B97876 /* Thoughts-Info.plist */,
+				F2827D8618D2064E00B97876 /* Type-Info.plist */,
 				F2827D8718D2064E00B97876 /* InfoPlist.strings */,
 				F2827D8A18D2064E00B97876 /* main.m */,
-				F2827D8C18D2064E00B97876 /* Thoughts-Prefix.pch */,
+				F2827D8C18D2064E00B97876 /* Type-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		F2827DA118D2064E00B97876 /* ThoughtsTests */ = {
+		F2827DA118D2064E00B97876 /* TypeTests */ = {
 			isa = PBXGroup;
 			children = (
-				F2827DA718D2064E00B97876 /* ThoughtsTests.m */,
 				F2B33C1918D4C8F700DBF058 /* THCoreDataThoughtContextTests.m */,
 				F2827DA218D2064E00B97876 /* Supporting Files */,
 			);
+			name = TypeTests;
 			path = ThoughtsTests;
 			sourceTree = "<group>";
 		};
 		F2827DA218D2064E00B97876 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				F2827DA318D2064E00B97876 /* ThoughtsTests-Info.plist */,
+				F2827DA318D2064E00B97876 /* TypeTests-Info.plist */,
 				F2827DA418D2064E00B97876 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -279,12 +277,22 @@
 			name = Default;
 			sourceTree = "<group>";
 		};
+		F2F43F6818D77CEA00EF5A0A /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				F2D237BB18D4735D003D7BA6 /* TYIndividualCharacterLabelsView.h */,
+				F2D237BC18D4735D003D7BA6 /* TYIndividualCharacterLabelsView.m */,
+			);
+			name = Common;
+			path = Thoughts;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F2827D7818D2064E00B97876 /* Thoughts */ = {
+		F2827D7818D2064E00B97876 /* Type */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F2827DAB18D2064E00B97876 /* Build configuration list for PBXNativeTarget "Thoughts" */;
+			buildConfigurationList = F2827DAB18D2064E00B97876 /* Build configuration list for PBXNativeTarget "Type" */;
 			buildPhases = (
 				F2827D7518D2064E00B97876 /* Sources */,
 				F2827D7618D2064E00B97876 /* Frameworks */,
@@ -294,14 +302,14 @@
 			);
 			dependencies = (
 			);
-			name = Thoughts;
+			name = Type;
 			productName = Thoughts;
-			productReference = F2827D7918D2064E00B97876 /* Thoughts.app */;
+			productReference = F2827D7918D2064E00B97876 /* Type.app */;
 			productType = "com.apple.product-type.application";
 		};
-		F2827D9818D2064E00B97876 /* ThoughtsTests */ = {
+		F2827D9818D2064E00B97876 /* TypeTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F2827DAE18D2064E00B97876 /* Build configuration list for PBXNativeTarget "ThoughtsTests" */;
+			buildConfigurationList = F2827DAE18D2064E00B97876 /* Build configuration list for PBXNativeTarget "TypeTests" */;
 			buildPhases = (
 				F2827D9518D2064E00B97876 /* Sources */,
 				F2827D9618D2064E00B97876 /* Frameworks */,
@@ -312,9 +320,9 @@
 			dependencies = (
 				F2827DA018D2064E00B97876 /* PBXTargetDependency */,
 			);
-			name = ThoughtsTests;
+			name = TypeTests;
 			productName = ThoughtsTests;
-			productReference = F2827D9918D2064E00B97876 /* ThoughtsTests.xctest */;
+			productReference = F2827D9918D2064E00B97876 /* TypeTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -332,7 +340,7 @@
 					};
 				};
 			};
-			buildConfigurationList = F2827D7418D2064E00B97876 /* Build configuration list for PBXProject "Thoughts" */;
+			buildConfigurationList = F2827D7418D2064E00B97876 /* Build configuration list for PBXProject "Type" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -344,8 +352,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F2827D7818D2064E00B97876 /* Thoughts */,
-				F2827D9818D2064E00B97876 /* ThoughtsTests */,
+				F2827D7818D2064E00B97876 /* Type */,
+				F2827D9818D2064E00B97876 /* TypeTests */,
 			);
 		};
 /* End PBXProject section */
@@ -385,7 +393,7 @@
 				F2827D8B18D2064E00B97876 /* main.m in Sources */,
 				F2827DB318D20CC400B97876 /* THCoreDataThought.m in Sources */,
 				F2B33C1D18D6375F00DBF058 /* THTestingViewController.m in Sources */,
-				F2D237BD18D4735D003D7BA6 /* THSingleCharacterTextView.m in Sources */,
+				F2D237BD18D4735D003D7BA6 /* TYIndividualCharacterLabelsView.m in Sources */,
 				F2827DC418D3867200B97876 /* THThoughtSpecification.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -395,7 +403,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2B33C1A18D4C8F700DBF058 /* THCoreDataThoughtContextTests.m in Sources */,
-				F2827DA818D2064E00B97876 /* ThoughtsTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,7 +411,7 @@
 /* Begin PBXTargetDependency section */
 		F2827DA018D2064E00B97876 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = F2827D7818D2064E00B97876 /* Thoughts */;
+			target = F2827D7818D2064E00B97876 /* Type */;
 			targetProxy = F2827D9F18D2064E00B97876 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -505,9 +512,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Thoughts/Thoughts-Prefix.pch";
-				INFOPLIST_FILE = "Thoughts/Thoughts-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "Thoughts/Type-Prefix.pch";
+				INFOPLIST_FILE = "Thoughts/Type-Info.plist";
+				PRODUCT_NAME = Type;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -518,9 +525,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Thoughts/Thoughts-Prefix.pch";
-				INFOPLIST_FILE = "Thoughts/Thoughts-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "Thoughts/Type-Prefix.pch";
+				INFOPLIST_FILE = "Thoughts/Type-Info.plist";
+				PRODUCT_NAME = Type;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -540,8 +547,8 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "ThoughtsTests/ThoughtsTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "ThoughtsTests/TypeTests-Info.plist";
+				PRODUCT_NAME = TypeTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -558,8 +565,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Thoughts/Thoughts-Prefix.pch";
-				INFOPLIST_FILE = "ThoughtsTests/ThoughtsTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "ThoughtsTests/TypeTests-Info.plist";
+				PRODUCT_NAME = TypeTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -568,7 +575,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F2827D7418D2064E00B97876 /* Build configuration list for PBXProject "Thoughts" */ = {
+		F2827D7418D2064E00B97876 /* Build configuration list for PBXProject "Type" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F2827DA918D2064E00B97876 /* Debug */,
@@ -577,7 +584,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F2827DAB18D2064E00B97876 /* Build configuration list for PBXNativeTarget "Thoughts" */ = {
+		F2827DAB18D2064E00B97876 /* Build configuration list for PBXNativeTarget "Type" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F2827DAC18D2064E00B97876 /* Debug */,
@@ -586,7 +593,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F2827DAE18D2064E00B97876 /* Build configuration list for PBXNativeTarget "ThoughtsTests" */ = {
+		F2827DAE18D2064E00B97876 /* Build configuration list for PBXNativeTarget "TypeTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F2827DAF18D2064E00B97876 /* Debug */,

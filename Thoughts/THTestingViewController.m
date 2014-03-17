@@ -41,6 +41,22 @@
     test = [self.sctv labelForCharacterAtIndex:12];
     test.backgroundColor = [UIColor yellowColor];
     
+    UILabel *label = [UILabel new];
+    label.font = self.sctv.font;
+    
+    label.text = testString;
+    label.numberOfLines = 0;
+    
+    [label sizeToFit];
+    
+    label.backgroundColor = [UIColor yellowColor];
+    
+    [self.view addSubview:label];
+    
+    label.center = CGPointMake(150, 260);
+    
+    self.sctv.font = [UIFont systemFontOfSize:20];
+    
 }
 
 @end

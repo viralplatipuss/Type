@@ -17,7 +17,9 @@
  
  TODO:
  
- - Change font property should update to new font immediately.
+ - Clean up code.
+ 
+ - Find better solution to NSNull entries for new-line characters.
  
  */
 

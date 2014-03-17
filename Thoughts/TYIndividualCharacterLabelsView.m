@@ -41,12 +41,37 @@
     return _font;
 }
 
+-(void)setFont:(UIFont *)font
+{
+    _font = font;
+    
+    [self redrawText];
+}
+
 -(void)setText:(NSString *)text
 {
-    
     _text = text;
     
-    NSArray *linesOfText = [text componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+    [self redrawText];
+}
+
+-(void)wipeText
+{
+    for (UILabel *label in self.characterLabels) {
+        
+        if(label != (UILabel *)[NSNull null]) { //eww, find a better solution to NSNull stuff.
+            [label removeFromSuperview];
+        }
+    }
+    
+    self.characterLabels = nil;
+}
+
+-(void)redrawText
+{
+    [self wipeText];
+    
+    NSArray *linesOfText = [self.text componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
     
     CGFloat lineOffsetY = 0;
     
@@ -89,11 +114,15 @@
     
     self.characterLabels = newCharacterLabels;
     
+    [self updateFrame];
+}
+
+-(void)updateFrame
+{
     CGRect frame = self.frame;
-    CGSize frameSize = [text sizeWithAttributes:@{NSFontAttributeName:self.font}];
+    CGSize frameSize = [self.text sizeWithAttributes:@{NSFontAttributeName:self.font}];
     frame.size = frameSize;
     self.frame = CGRectIntegral(frame);
-    
 }
 
 -(UILabel *)labelForCharacterAtIndex:(NSUInteger)index

@@ -26,6 +26,7 @@
 		F2827DBC18D242E100B97876 /* THCoreDataThoughtContext.m in Sources */ = {isa = PBXBuildFile; fileRef = F2827DBB18D242E100B97876 /* THCoreDataThoughtContext.m */; };
 		F2827DC418D3867200B97876 /* THThoughtSpecification.m in Sources */ = {isa = PBXBuildFile; fileRef = F2827DC318D3867200B97876 /* THThoughtSpecification.m */; };
 		F2B33C1A18D4C8F700DBF058 /* THCoreDataThoughtContextTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B33C1918D4C8F700DBF058 /* THCoreDataThoughtContextTests.m */; };
+		F2B33C1D18D6375F00DBF058 /* THTestingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B33C1C18D6375F00DBF058 /* THTestingViewController.m */; };
 		F2C6D81A18D3CA8800265BF3 /* THDefaultAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C6D81318D3CA8800265BF3 /* THDefaultAssembly.m */; };
 		F2C6D81B18D3CA8800265BF3 /* THMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C6D81518D3CA8800265BF3 /* THMainViewController.m */; };
 		F2C6D81C18D3CA8800265BF3 /* THMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C6D81718D3CA8800265BF3 /* THMainView.m */; };
@@ -71,6 +72,8 @@
 		F2827DC318D3867200B97876 /* THThoughtSpecification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THThoughtSpecification.m; sourceTree = "<group>"; };
 		F2827DC518D3B38400B97876 /* THThoughtContext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = THThoughtContext.h; sourceTree = "<group>"; };
 		F2B33C1918D4C8F700DBF058 /* THCoreDataThoughtContextTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THCoreDataThoughtContextTests.m; sourceTree = "<group>"; };
+		F2B33C1B18D6375F00DBF058 /* THTestingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THTestingViewController.h; sourceTree = "<group>"; };
+		F2B33C1C18D6375F00DBF058 /* THTestingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THTestingViewController.m; sourceTree = "<group>"; };
 		F2C6D81118D3CA8800265BF3 /* THAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THAssembly.h; sourceTree = "<group>"; };
 		F2C6D81218D3CA8800265BF3 /* THDefaultAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THDefaultAssembly.h; sourceTree = "<group>"; };
 		F2C6D81318D3CA8800265BF3 /* THDefaultAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THDefaultAssembly.m; sourceTree = "<group>"; };
@@ -154,6 +157,8 @@
 				F2C6D81718D3CA8800265BF3 /* THMainView.m */,
 				F2C6D81818D3CA8800265BF3 /* THThoughtView.h */,
 				F2C6D81918D3CA8800265BF3 /* THThoughtView.m */,
+				F2B33C1B18D6375F00DBF058 /* THTestingViewController.h */,
+				F2B33C1C18D6375F00DBF058 /* THTestingViewController.m */,
 				F2827DB618D240CC00B97876 /* Domain */,
 				F2827D8518D2064E00B97876 /* Supporting Files */,
 			);
@@ -379,6 +384,7 @@
 				F2827D9218D2064E00B97876 /* Thoughts.xcdatamodeld in Sources */,
 				F2827D8B18D2064E00B97876 /* main.m in Sources */,
 				F2827DB318D20CC400B97876 /* THCoreDataThought.m in Sources */,
+				F2B33C1D18D6375F00DBF058 /* THTestingViewController.m in Sources */,
 				F2D237BD18D4735D003D7BA6 /* THSingleCharacterTextView.m in Sources */,
 				F2827DC418D3867200B97876 /* THThoughtSpecification.m in Sources */,
 			);

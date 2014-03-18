@@ -16,20 +16,33 @@
 
 @implementation TYIndividualCharacterLabelsView
 
-@synthesize text = _text, font = _font, characterLabels = _characterLabels;
+@synthesize text = _text, font = _font, characterLabels = _characterLabels, textColor = _textColor;
 
 -(instancetype)init
 {
-    self = [super initWithFrame:CGRectZero];
-    if (self) {
-        [self setupView];
-    }
-    return self;
+    return self = [super init];
 }
 
--(void)setupView
+-(UIColor *)textColor
 {
-    self.backgroundColor = [UIColor greenColor];
+    if(!_textColor) {
+        _textColor = [UIColor blackColor];
+    }
+    
+    return _textColor;
+}
+
+-(void)setTextColor:(UIColor *)textColor
+{
+    _textColor = textColor;
+    
+    for (UILabel *label in self.characterLabels) {
+        
+        if(label != (UILabel *)[NSNull null]) { //eww, find a better solution to NSNull stuff.
+            label.textColor = self.textColor;
+        }
+    }
+
 }
 
 -(UIFont *)font
@@ -95,6 +108,7 @@
             UILabel *characterLabel = [UILabel new];
             characterLabel.font = self.font;
             characterLabel.text = [lineOfText substringWithRange:NSMakeRange(characterNumber, 1)];
+            characterLabel.textColor = self.textColor;
             [characterLabel sizeToFit];
             
             NSString *lineOfTextUpToCharacter = [lineOfText substringToIndex:characterNumber];
@@ -114,14 +128,26 @@
     
     self.characterLabels = newCharacterLabels;
     
-    [self updateFrame];
+    
+    
+    if(self.translatesAutoresizingMaskIntoConstraints == YES) {
+        //If not using autolayout, manually resize frame.
+        [self updateFrameToMatchContentSize];
+    }
+    [self invalidateIntrinsicContentSize];
+    
 }
 
--(void)updateFrame
+-(CGSize)intrinsicContentSize
+{
+    CGSize contentSize = [self.text sizeWithAttributes:@{NSFontAttributeName:self.font}];
+    return CGSizeMake(ceilf(contentSize.width), ceilf(contentSize.height));
+}
+
+-(void)updateFrameToMatchContentSize
 {
     CGRect frame = self.frame;
-    CGSize frameSize = [self.text sizeWithAttributes:@{NSFontAttributeName:self.font}];
-    frame.size = frameSize;
+    frame.size = [self intrinsicContentSize];
     self.frame = CGRectIntegral(frame);
 }
 
@@ -143,6 +169,15 @@
     }
     
     return _characterLabels;
+}
+
+-(NSString *)text
+{
+    if(!_text) {
+        _text = @"";
+    }
+    
+    return _text;
 }
 
 

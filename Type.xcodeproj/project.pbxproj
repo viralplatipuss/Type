@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F270FFD518D7C326000846D2 /* TYTypingView.m in Sources */ = {isa = PBXBuildFile; fileRef = F270FFD418D7C326000846D2 /* TYTypingView.m */; };
 		F2827D7D18D2064E00B97876 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2827D7C18D2064E00B97876 /* Foundation.framework */; };
 		F2827D7F18D2064E00B97876 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2827D7E18D2064E00B97876 /* CoreGraphics.framework */; };
 		F2827D8118D2064E00B97876 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2827D8018D2064E00B97876 /* UIKit.framework */; };
@@ -31,6 +32,10 @@
 		F2C6D81C18D3CA8800265BF3 /* THMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C6D81718D3CA8800265BF3 /* THMainView.m */; };
 		F2C6D81D18D3CA8800265BF3 /* THThoughtView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C6D81918D3CA8800265BF3 /* THThoughtView.m */; };
 		F2D237BD18D4735D003D7BA6 /* TYIndividualCharacterLabelsView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D237BC18D4735D003D7BA6 /* TYIndividualCharacterLabelsView.m */; };
+		F2F43F6B18D7833100EF5A0A /* TYMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F43F6A18D7833100EF5A0A /* TYMainView.m */; };
+		F2F43F6E18D783B200EF5A0A /* TYMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F43F6D18D783B200EF5A0A /* TYMainViewController.m */; };
+		F2F43F7118D787B300EF5A0A /* Raleway-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F2F43F6F18D7868A00EF5A0A /* Raleway-Light.ttf */; };
+		F2F43F7418D7AAA900EF5A0A /* UIColor+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F43F7318D7AAA900EF5A0A /* UIColor+HexString.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +49,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F270FFD318D7C326000846D2 /* TYTypingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYTypingView.h; sourceTree = "<group>"; };
+		F270FFD418D7C326000846D2 /* TYTypingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYTypingView.m; sourceTree = "<group>"; };
 		F2827D7918D2064E00B97876 /* Type.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Type.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2827D7C18D2064E00B97876 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F2827D7E18D2064E00B97876 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -83,6 +90,13 @@
 		F2C6D81918D3CA8800265BF3 /* THThoughtView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THThoughtView.m; sourceTree = "<group>"; };
 		F2D237BB18D4735D003D7BA6 /* TYIndividualCharacterLabelsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYIndividualCharacterLabelsView.h; sourceTree = "<group>"; };
 		F2D237BC18D4735D003D7BA6 /* TYIndividualCharacterLabelsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYIndividualCharacterLabelsView.m; sourceTree = "<group>"; };
+		F2F43F6918D7833100EF5A0A /* TYMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYMainView.h; sourceTree = "<group>"; };
+		F2F43F6A18D7833100EF5A0A /* TYMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYMainView.m; sourceTree = "<group>"; };
+		F2F43F6C18D783B200EF5A0A /* TYMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYMainViewController.h; sourceTree = "<group>"; };
+		F2F43F6D18D783B200EF5A0A /* TYMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYMainViewController.m; sourceTree = "<group>"; };
+		F2F43F6F18D7868A00EF5A0A /* Raleway-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Light.ttf"; sourceTree = "<group>"; };
+		F2F43F7218D7AAA900EF5A0A /* UIColor+HexString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HexString.h"; sourceTree = "<group>"; };
+		F2F43F7318D7AAA900EF5A0A /* UIColor+HexString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HexString.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,11 +166,18 @@
 				F2C6D81518D3CA8800265BF3 /* THMainViewController.m */,
 				F2C6D81618D3CA8800265BF3 /* THMainView.h */,
 				F2C6D81718D3CA8800265BF3 /* THMainView.m */,
+				F2F43F6C18D783B200EF5A0A /* TYMainViewController.h */,
+				F2F43F6D18D783B200EF5A0A /* TYMainViewController.m */,
+				F2F43F6918D7833100EF5A0A /* TYMainView.h */,
+				F2F43F6A18D7833100EF5A0A /* TYMainView.m */,
+				F270FFD318D7C326000846D2 /* TYTypingView.h */,
+				F270FFD418D7C326000846D2 /* TYTypingView.m */,
 				F2C6D81818D3CA8800265BF3 /* THThoughtView.h */,
 				F2C6D81918D3CA8800265BF3 /* THThoughtView.m */,
 				F2B33C1B18D6375F00DBF058 /* THTestingViewController.h */,
 				F2B33C1C18D6375F00DBF058 /* THTestingViewController.m */,
 				F2827DB618D240CC00B97876 /* Domain */,
+				F2F43F7018D7868E00EF5A0A /* Fonts */,
 				F2827D8518D2064E00B97876 /* Supporting Files */,
 			);
 			name = Type;
@@ -282,9 +303,27 @@
 			children = (
 				F2D237BB18D4735D003D7BA6 /* TYIndividualCharacterLabelsView.h */,
 				F2D237BC18D4735D003D7BA6 /* TYIndividualCharacterLabelsView.m */,
+				F2F43F7518D7AAAC00EF5A0A /* Categories */,
 			);
 			name = Common;
 			path = Thoughts;
+			sourceTree = "<group>";
+		};
+		F2F43F7018D7868E00EF5A0A /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				F2F43F6F18D7868A00EF5A0A /* Raleway-Light.ttf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
+		F2F43F7518D7AAAC00EF5A0A /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				F2F43F7218D7AAA900EF5A0A /* UIColor+HexString.h */,
+				F2F43F7318D7AAA900EF5A0A /* UIColor+HexString.m */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -363,6 +402,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2F43F7118D787B300EF5A0A /* Raleway-Light.ttf in Resources */,
 				F2827D8918D2064E00B97876 /* InfoPlist.strings in Resources */,
 				F2827D9418D2064E00B97876 /* Images.xcassets in Resources */,
 			);
@@ -383,15 +423,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2F43F7418D7AAA900EF5A0A /* UIColor+HexString.m in Sources */,
 				F2C6D81A18D3CA8800265BF3 /* THDefaultAssembly.m in Sources */,
 				F2C6D81B18D3CA8800265BF3 /* THMainViewController.m in Sources */,
 				F2C6D81C18D3CA8800265BF3 /* THMainView.m in Sources */,
 				F2827DBC18D242E100B97876 /* THCoreDataThoughtContext.m in Sources */,
+				F2F43F6B18D7833100EF5A0A /* TYMainView.m in Sources */,
 				F2C6D81D18D3CA8800265BF3 /* THThoughtView.m in Sources */,
 				F2827D8F18D2064E00B97876 /* THAppDelegate.m in Sources */,
 				F2827D9218D2064E00B97876 /* Thoughts.xcdatamodeld in Sources */,
+				F2F43F6E18D783B200EF5A0A /* TYMainViewController.m in Sources */,
 				F2827D8B18D2064E00B97876 /* main.m in Sources */,
 				F2827DB318D20CC400B97876 /* THCoreDataThought.m in Sources */,
+				F270FFD518D7C326000846D2 /* TYTypingView.m in Sources */,
 				F2B33C1D18D6375F00DBF058 /* THTestingViewController.m in Sources */,
 				F2D237BD18D4735D003D7BA6 /* TYIndividualCharacterLabelsView.m in Sources */,
 				F2827DC418D3867200B97876 /* THThoughtSpecification.m in Sources */,

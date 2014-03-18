@@ -10,11 +10,13 @@
 #import "THMainViewController.h"
 #import "THCoreDataThoughtContext.h"
 
+#import "TYMainViewController.h"
+
 #import "THTestingViewController.h"
 
 static NSString * const kCoreDataThoughtContextSQLDBName = @"Thoughts.sqlite";
 
-static const BOOL testVC = YES;
+static const BOOL testVC = NO;
 
 @interface THDefaultAssembly()
 
@@ -33,7 +35,8 @@ static const BOOL testVC = YES;
         if(testVC) {
             _viewController = [THTestingViewController new];
         }else {
-            _viewController = [[THMainViewController alloc] initWithThoughtContext:self.thoughtContext];
+            //_viewController = [[THMainViewController alloc] initWithThoughtContext:self.thoughtContext];
+            _viewController = [TYMainViewController new];
         }
         
     }

@@ -21,7 +21,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
     
     self.sctv = [TYIndividualCharacterLabelsView new];
     
@@ -55,7 +55,7 @@
     
     label.center = CGPointMake(150, 260);
     
-    self.sctv.font = [UIFont systemFontOfSize:20];
+    self.sctv.font = [UIFont fontWithName:@"Raleway-Light" size:12];
     
 }
 

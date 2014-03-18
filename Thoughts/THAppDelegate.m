@@ -11,10 +11,10 @@
 
 @implementation THAppDelegate
 
-
 -(void)startApp
 {
-    self.window.backgroundColor = [UIColor whiteColor];
+    self.window.backgroundColor = [UIColor blackColor];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     id <THAssembly> assembly = [THDefaultAssembly new];
     self.window.rootViewController = assembly.viewController;
@@ -57,6 +57,5 @@
 {
     // Saves changes in the application's managed object context before the application terminates.
 }
-
 
 @end

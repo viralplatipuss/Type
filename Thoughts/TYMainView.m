@@ -97,7 +97,7 @@ static const CGFloat kToolTipFontSize = 12;
     CGFloat animationDuration = [animationDurationNumber floatValue];
     
     [self layoutIfNeeded];
-    self.containerViewBottomConstraint.constant = -keyboardSize.height;
+    self.containerViewBottomConstraint.constant = -keyboardSize.height-10;
     [UIView animateWithDuration:animationDuration delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         
         [self layoutIfNeeded];
@@ -114,7 +114,7 @@ static const CGFloat kToolTipFontSize = 12;
     CGFloat animationDuration = [animationDurationNumber floatValue];
     
     [self layoutIfNeeded];
-    self.containerViewBottomConstraint.constant = 0;
+    self.containerViewBottomConstraint.constant = -10;
     [UIView animateWithDuration:animationDuration delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         
         [self layoutIfNeeded];
@@ -155,7 +155,7 @@ static const CGFloat kToolTipFontSize = 12;
     
     
     
-    self.containerViewBottomConstraint = [NSLayoutConstraint constraintWithItem:self.typingView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeBottom multiplier:1 constant:0];
+    self.containerViewBottomConstraint = [NSLayoutConstraint constraintWithItem:self.typingView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeBottom multiplier:1 constant:-10];
     
     [self addConstraint:self.containerViewBottomConstraint];
     

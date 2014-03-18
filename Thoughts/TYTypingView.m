@@ -44,7 +44,7 @@ static const NSUInteger kCharacterLimit = 60;
 
 -(void)setupView
 {
-    
+    //self.backgroundColor = [UIColor greenColor];
     [self addSubview:self.labelsView];
     
     [self setupConstraints];
@@ -127,6 +127,11 @@ static const NSUInteger kCharacterLimit = 60;
 
 -(void)insertText:(NSString *)text
 {
+    if([text isEqualToString:@"\n"]) {
+        [self resignFirstResponder];
+        return;
+    }
+    
     self.text = [self.text stringByAppendingString:text];
 }
 
@@ -157,6 +162,10 @@ static const NSUInteger kCharacterLimit = 60;
     return UIKeyboardTypeAlphabet;
 }
 
+-(UITextAutocapitalizationType)autocapitalizationType
+{
+    return UITextAutocapitalizationTypeSentences;
+}
 
 
 #pragma mark - Private Helpers
@@ -172,6 +181,8 @@ static const NSUInteger kCharacterLimit = 60;
     textContainer.lineFragmentPadding = 0;
     
     NSLayoutManager *layoutManager = [NSLayoutManager new];
+    
+    //string = [string stringByReplacingOccurrencesOfString:@" " withString:@""];
     
     NSTextStorage *textStorage = [[NSTextStorage alloc] initWithString:string attributes:@{NSFontAttributeName:font}];
     

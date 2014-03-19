@@ -184,6 +184,8 @@ static const NSUInteger kCharacterLimit = 60;
     
     //string = [string stringByReplacingOccurrencesOfString:@" " withString:@""];
     
+    //Potential Fix: REMOVE TRAILING SPACES THEN ADD THEM AGAIN AFTER
+    
     NSTextStorage *textStorage = [[NSTextStorage alloc] initWithString:string attributes:@{NSFontAttributeName:font}];
     
     [textStorage addLayoutManager:layoutManager];

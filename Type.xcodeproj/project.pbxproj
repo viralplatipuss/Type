@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F266091818DA08800062A7B3 /* NSString+WordWrappedLineBreaks.m in Sources */ = {isa = PBXBuildFile; fileRef = F266091718DA08800062A7B3 /* NSString+WordWrappedLineBreaks.m */; };
 		F270FFD518D7C326000846D2 /* TYTypingView.m in Sources */ = {isa = PBXBuildFile; fileRef = F270FFD418D7C326000846D2 /* TYTypingView.m */; };
 		F2827D7D18D2064E00B97876 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2827D7C18D2064E00B97876 /* Foundation.framework */; };
 		F2827D7F18D2064E00B97876 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2827D7E18D2064E00B97876 /* CoreGraphics.framework */; };
@@ -27,6 +28,8 @@
 		F2827DC418D3867200B97876 /* THThoughtSpecification.m in Sources */ = {isa = PBXBuildFile; fileRef = F2827DC318D3867200B97876 /* THThoughtSpecification.m */; };
 		F2B33C1A18D4C8F700DBF058 /* THCoreDataThoughtContextTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B33C1918D4C8F700DBF058 /* THCoreDataThoughtContextTests.m */; };
 		F2B33C1D18D6375F00DBF058 /* THTestingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B33C1C18D6375F00DBF058 /* THTestingViewController.m */; };
+		F2B7118918DB64D100E88E34 /* TYTextSharedCharactersTransitionView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B7118818DB64D100E88E34 /* TYTextSharedCharactersTransitionView.m */; };
+		F2B7118C18DB81D900E88E34 /* MTRandom.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B7118B18DB81D900E88E34 /* MTRandom.m */; };
 		F2C6D81A18D3CA8800265BF3 /* THDefaultAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C6D81318D3CA8800265BF3 /* THDefaultAssembly.m */; };
 		F2C6D81B18D3CA8800265BF3 /* THMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C6D81518D3CA8800265BF3 /* THMainViewController.m */; };
 		F2C6D81C18D3CA8800265BF3 /* THMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C6D81718D3CA8800265BF3 /* THMainView.m */; };
@@ -49,6 +52,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F266091618DA08800062A7B3 /* NSString+WordWrappedLineBreaks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+WordWrappedLineBreaks.h"; sourceTree = "<group>"; };
+		F266091718DA08800062A7B3 /* NSString+WordWrappedLineBreaks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+WordWrappedLineBreaks.m"; sourceTree = "<group>"; };
 		F270FFD318D7C326000846D2 /* TYTypingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYTypingView.h; sourceTree = "<group>"; };
 		F270FFD418D7C326000846D2 /* TYTypingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYTypingView.m; sourceTree = "<group>"; };
 		F2827D7918D2064E00B97876 /* Type.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Type.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -79,6 +84,10 @@
 		F2B33C1918D4C8F700DBF058 /* THCoreDataThoughtContextTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THCoreDataThoughtContextTests.m; sourceTree = "<group>"; };
 		F2B33C1B18D6375F00DBF058 /* THTestingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THTestingViewController.h; sourceTree = "<group>"; };
 		F2B33C1C18D6375F00DBF058 /* THTestingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THTestingViewController.m; sourceTree = "<group>"; };
+		F2B7118718DB64D100E88E34 /* TYTextSharedCharactersTransitionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYTextSharedCharactersTransitionView.h; sourceTree = "<group>"; };
+		F2B7118818DB64D100E88E34 /* TYTextSharedCharactersTransitionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYTextSharedCharactersTransitionView.m; sourceTree = "<group>"; };
+		F2B7118A18DB81D900E88E34 /* MTRandom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTRandom.h; sourceTree = "<group>"; };
+		F2B7118B18DB81D900E88E34 /* MTRandom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTRandom.m; sourceTree = "<group>"; };
 		F2C6D81118D3CA8800265BF3 /* THAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THAssembly.h; sourceTree = "<group>"; };
 		F2C6D81218D3CA8800265BF3 /* THDefaultAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THDefaultAssembly.h; sourceTree = "<group>"; };
 		F2C6D81318D3CA8800265BF3 /* THDefaultAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THDefaultAssembly.m; sourceTree = "<group>"; };
@@ -125,10 +134,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F266091918DA33230062A7B3 /* 3rd Party */ = {
+			isa = PBXGroup;
+			children = (
+				F2B7118A18DB81D900E88E34 /* MTRandom.h */,
+				F2B7118B18DB81D900E88E34 /* MTRandom.m */,
+				F2F43F7218D7AAA900EF5A0A /* UIColor+HexString.h */,
+				F2F43F7318D7AAA900EF5A0A /* UIColor+HexString.m */,
+			);
+			name = "3rd Party";
+			path = Thoughts;
+			sourceTree = "<group>";
+		};
 		F2827D7018D2064E00B97876 = {
 			isa = PBXGroup;
 			children = (
-				F2F43F6818D77CEA00EF5A0A /* Common */,
+				F266091918DA33230062A7B3 /* 3rd Party */,
 				F2827D8418D2064E00B97876 /* Type */,
 				F2827DA118D2064E00B97876 /* TypeTests */,
 				F2827D7B18D2064E00B97876 /* Frameworks */,
@@ -160,6 +181,7 @@
 		F2827D8418D2064E00B97876 /* Type */ = {
 			isa = PBXGroup;
 			children = (
+				F2F43F6818D77CEA00EF5A0A /* Reusable */,
 				F2C6D81018D3C9A700265BF3 /* AppDelegate */,
 				F2C6D81E18D3CABE00265BF3 /* Assembly */,
 				F2C6D81418D3CA8800265BF3 /* THMainViewController.h */,
@@ -298,15 +320,16 @@
 			name = Default;
 			sourceTree = "<group>";
 		};
-		F2F43F6818D77CEA00EF5A0A /* Common */ = {
+		F2F43F6818D77CEA00EF5A0A /* Reusable */ = {
 			isa = PBXGroup;
 			children = (
 				F2D237BB18D4735D003D7BA6 /* TYIndividualCharacterLabelsView.h */,
 				F2D237BC18D4735D003D7BA6 /* TYIndividualCharacterLabelsView.m */,
+				F2B7118718DB64D100E88E34 /* TYTextSharedCharactersTransitionView.h */,
+				F2B7118818DB64D100E88E34 /* TYTextSharedCharactersTransitionView.m */,
 				F2F43F7518D7AAAC00EF5A0A /* Categories */,
 			);
-			name = Common;
-			path = Thoughts;
+			name = Reusable;
 			sourceTree = "<group>";
 		};
 		F2F43F7018D7868E00EF5A0A /* Fonts */ = {
@@ -320,8 +343,8 @@
 		F2F43F7518D7AAAC00EF5A0A /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				F2F43F7218D7AAA900EF5A0A /* UIColor+HexString.h */,
-				F2F43F7318D7AAA900EF5A0A /* UIColor+HexString.m */,
+				F266091618DA08800062A7B3 /* NSString+WordWrappedLineBreaks.h */,
+				F266091718DA08800062A7B3 /* NSString+WordWrappedLineBreaks.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -429,10 +452,13 @@
 				F2C6D81C18D3CA8800265BF3 /* THMainView.m in Sources */,
 				F2827DBC18D242E100B97876 /* THCoreDataThoughtContext.m in Sources */,
 				F2F43F6B18D7833100EF5A0A /* TYMainView.m in Sources */,
+				F2B7118918DB64D100E88E34 /* TYTextSharedCharactersTransitionView.m in Sources */,
 				F2C6D81D18D3CA8800265BF3 /* THThoughtView.m in Sources */,
 				F2827D8F18D2064E00B97876 /* THAppDelegate.m in Sources */,
 				F2827D9218D2064E00B97876 /* Thoughts.xcdatamodeld in Sources */,
 				F2F43F6E18D783B200EF5A0A /* TYMainViewController.m in Sources */,
+				F2B7118C18DB81D900E88E34 /* MTRandom.m in Sources */,
+				F266091818DA08800062A7B3 /* NSString+WordWrappedLineBreaks.m in Sources */,
 				F2827D8B18D2064E00B97876 /* main.m in Sources */,
 				F2827DB318D20CC400B97876 /* THCoreDataThought.m in Sources */,
 				F270FFD518D7C326000846D2 /* TYTypingView.m in Sources */,

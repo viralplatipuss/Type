@@ -105,16 +105,34 @@
         
         for (NSUInteger characterNumber=0; characterNumber<lineOfText.length; characterNumber++) {
             
+            NSString *character = [lineOfText substringWithRange:NSMakeRange(characterNumber, 1)];
+            
             UILabel *characterLabel = [UILabel new];
             characterLabel.font = self.font;
-            characterLabel.text = [lineOfText substringWithRange:NSMakeRange(characterNumber, 1)];
+            characterLabel.text = character;
             characterLabel.textColor = self.textColor;
             [characterLabel sizeToFit];
+            characterLabel.backgroundColor = [UIColor redColor];
+            
+            NSDictionary *attributeDictionary = @{NSFontAttributeName:self.font};
             
             NSString *lineOfTextUpToCharacter = [lineOfText substringToIndex:characterNumber];
-            CGSize sizeOfLineOfTextUpToCharacter = [lineOfTextUpToCharacter sizeWithAttributes:@{NSFontAttributeName:self.font}];
+            CGSize sizeOfLineOfTextUpToCharacter = [lineOfTextUpToCharacter sizeWithAttributes:attributeDictionary];
             
-            characterLabel.frame = CGRectIntegral(CGRectOffset(characterLabel.frame, sizeOfLineOfTextUpToCharacter.width, lineOffsetY));
+            NSString *lineOfTextUpToAndIncludingCharacter = [lineOfTextUpToCharacter stringByAppendingString:character];
+            CGSize sizeOfLineUpToAndIncludingCharacter = [lineOfTextUpToAndIncludingCharacter sizeWithAttributes:attributeDictionary];
+            
+            CGFloat widthIncreaseDueToCharacter = sizeOfLineUpToAndIncludingCharacter.width-sizeOfLineOfTextUpToCharacter.width;
+            
+            CGSize characterSize = [character sizeWithAttributes:attributeDictionary];
+            
+            CGFloat characterLabelOffsetX = widthIncreaseDueToCharacter-characterSize.width;
+            
+            CGRect newFrame = CGRectOffset(characterLabel.frame, sizeOfLineOfTextUpToCharacter.width+characterLabelOffsetX, lineOffsetY);
+            
+            CGRect newFrameRounded = CGRectMake(round(CGRectGetMinX(newFrame)), round(CGRectGetMinY(newFrame)), round(CGRectGetWidth(newFrame)), round(CGRectGetHeight(newFrame)));
+            
+            characterLabel.frame = newFrameRounded;
             
             [self addSubview:characterLabel];
             
@@ -138,17 +156,22 @@
     
 }
 
+-(CGSize)sizeWithText:(NSString *)text font:(UIFont *)font
+{
+    CGSize size = [text sizeWithAttributes:@{NSFontAttributeName:font}];
+    return CGSizeMake(ceilf(size.width), ceilf(size.height));
+}
+
 -(CGSize)intrinsicContentSize
 {
-    CGSize contentSize = [self.text sizeWithAttributes:@{NSFontAttributeName:self.font}];
-    return CGSizeMake(ceilf(contentSize.width), ceilf(contentSize.height));
+    return [self sizeWithText:self.text font:self.font];
 }
 
 -(void)updateFrameToMatchContentSize
 {
     CGRect frame = self.frame;
     frame.size = [self intrinsicContentSize];
-    self.frame = CGRectIntegral(frame);
+    self.frame = frame;
 }
 
 -(UILabel *)labelForCharacterAtIndex:(NSUInteger)index

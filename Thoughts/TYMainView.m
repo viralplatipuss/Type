@@ -16,17 +16,58 @@ static NSString * const kApplicationFontName = @"Raleway-Light";
 static const CGFloat kToolTipFontSize = 12;
 
 
-@interface TYMainView()
+@interface TYMainView() <UITextViewDelegate>
 
+
+//Containers
+
+
+@property (nonatomic, strong, readonly) UIView *contentView;
+
+//Header Subviews
 @property (nonatomic, strong, readonly) UIView *topLine;
 
-@property (nonatomic, strong, readwrite) NSLayoutConstraint *containerViewBottomConstraint;
+@property (nonatomic, strong, readonly) UILabel *toolTipLabel;
+
+//Content Subviews
+
+
+//Misc
+@property (nonatomic, strong, readwrite) NSLayoutConstraint *contentViewBottomConstraint;
+
 
 @end
 
 @implementation TYMainView
 
-@synthesize topLine = _topLine, toolTipLabel = _toolTipLabel, typingView = _typingView;
+@synthesize headerView = _headerView, contentView = _contentView, topLine = _topLine, toolTipLabel = _toolTipLabel, textView = _textView, contentViewBottomConstraint = _contentViewBottomConstraint;
+
+-(void)textViewDidChange:(UITextView *)textView
+{
+    NSLog(@"bing");
+    
+    NSLog(@"%@",NSStringFromCGSize(self.textView.contentSize));
+    
+    [self.textView caretRectForPosition:nil];
+    
+    UITextRange *textRange = [self.textView textRangeFromPosition:self.textView.beginningOfDocument toPosition:self.textView.endOfDocument];
+    
+    CGRect rect = [self.textView firstRectForRange:textRange];
+    
+    NSLog(@"%@",NSStringFromCGRect(rect));
+    
+    //self.textView
+    
+    if([textView.text isEqualToString:@"China is a countryfor."]) {
+        
+        NSLog(@"BOOP");
+        //self.textView.frame = rect;
+        [self.textView removeFromSuperview];
+        [self addSubview:self.textView];
+        [self setNeedsUpdateConstraints];
+    }
+    
+}
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -34,6 +75,8 @@ static const CGFloat kToolTipFontSize = 12;
     if (self) {
         [self setupView];
         [self registerForKeyboardNotifications];
+        
+        [self.textView becomeFirstResponder];
     }
     return self;
 }
@@ -42,11 +85,46 @@ static const CGFloat kToolTipFontSize = 12;
 {
     self.backgroundColor = [UIColor colorWithHexString:kBackgroundColor];
     
-    [self addSubview:self.topLine];
-    [self addSubview:self.toolTipLabel];
-    [self addSubview:self.typingView];
+    [self addSubview:self.contentView];
+    [self addSubview:self.headerView];
+    
+    [self.contentView addSubview:self.textView];
+    
+    [self.headerView addSubview:self.toolTipLabel];
+    [self.headerView addSubview:self.topLine];
     
     [self setupConstraints];
+}
+
+-(UIView *)headerView
+{
+    if(!_headerView) {
+        _headerView = [UIView new];
+    }
+    
+    return _headerView;
+}
+
+-(UIView *)contentView
+{
+    if (!_contentView) {
+        _contentView = [UIView new];
+    }
+    
+    return _contentView;
+}
+
+-(UILabel *)toolTipLabel
+{
+    if(!_toolTipLabel) {
+        _toolTipLabel = [UILabel new];
+        _toolTipLabel.textAlignment = NSTextAlignmentCenter;
+        _toolTipLabel.font = [UIFont fontWithName:kApplicationFontName size:kToolTipFontSize];
+        _toolTipLabel.textColor = [UIColor colorWithRed:0/255.0 green:47/255.0 blue:181/255.0 alpha:1];
+        _toolTipLabel.text = @"Just Type.";
+    }
+    
+    return _toolTipLabel;
 }
 
 -(UIView *)topLine
@@ -59,26 +137,26 @@ static const CGFloat kToolTipFontSize = 12;
     return _topLine;
 }
 
--(TYTypingView *)typingView
+-(UITextView *)textView
 {
-    if(!_typingView) {
-        _typingView = [TYTypingView new];
-        _typingView.font = [UIFont fontWithName:kApplicationFontName size:36];
-    }
-    
-    return _typingView;
-}
+    if(!_textView) {
+        _textView = [UITextView new];
+        _textView.backgroundColor = [UIColor redColor];
+        _textView.font = [UIFont fontWithName:kApplicationFontName size:37];
+        _textView.keyboardAppearance = UIKeyboardAppearanceDark;
+        _textView.returnKeyType = UIReturnKeyDone;
+        _textView.enablesReturnKeyAutomatically = YES;
+        
+        _textView.delegate = self;
 
--(UILabel *)toolTipLabel
-{
-    if(!_toolTipLabel) {
-        _toolTipLabel = [UILabel new];
-        _toolTipLabel.textAlignment = NSTextAlignmentCenter;
-        _toolTipLabel.font = [UIFont fontWithName:kApplicationFontName size:kToolTipFontSize];
-        _toolTipLabel.textColor = [UIColor colorWithRed:0/255.0 green:47/255.0 blue:181/255.0 alpha:1];
-    }
+        
+        _textView.scrollEnabled = NO;
+
+        _textView.tintColor = [UIColor greenColor];
+        
+            }
     
-    return _toolTipLabel;
+    return _textView;
 }
 
 -(void)registerForKeyboardNotifications
@@ -90,6 +168,7 @@ static const CGFloat kToolTipFontSize = 12;
 
 -(void)keyboardWillShow:(NSNotification *)aNotification
 {
+    
     NSDictionary *info = [aNotification userInfo];
     CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     
@@ -97,7 +176,7 @@ static const CGFloat kToolTipFontSize = 12;
     CGFloat animationDuration = [animationDurationNumber floatValue];
     
     [self layoutIfNeeded];
-    self.containerViewBottomConstraint.constant = -keyboardSize.height-10;
+    self.contentViewBottomConstraint.constant = -keyboardSize.height;
     [UIView animateWithDuration:animationDuration delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         
         [self layoutIfNeeded];
@@ -114,7 +193,7 @@ static const CGFloat kToolTipFontSize = 12;
     CGFloat animationDuration = [animationDurationNumber floatValue];
     
     [self layoutIfNeeded];
-    self.containerViewBottomConstraint.constant = -10;
+    self.contentViewBottomConstraint.constant = 0;
     [UIView animateWithDuration:animationDuration delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         
         [self layoutIfNeeded];
@@ -131,33 +210,53 @@ static const CGFloat kToolTipFontSize = 12;
 -(void)setupConstraints
 {
     
+    self.headerView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    self.textView.translatesAutoresizingMaskIntoConstraints = NO;
+    
     self.topLine.translatesAutoresizingMaskIntoConstraints = NO;
     self.toolTipLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    self.typingView.translatesAutoresizingMaskIntoConstraints = NO;
     
-    NSDictionary *views = @{@"topLine": self.topLine,
+    
+    NSDictionary *views = @{
+                            @"headerView": self.headerView,
+                            @"contentView": self.contentView,
+                            
+                            @"textView": self.textView,
+                            
+                            @"topLine": self.topLine,
                             @"toolTipLabel": self.toolTipLabel,
-                            @"typingView": self.typingView};
-    
-    NSDictionary *metrics = @{@"topLineOffsetY": @(51),
-                              @"topLineThickness":@(0.5),
-                              @"toolTipOffsetY":@(27.5)};
+                            };
     
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[topLine]|" options:0 metrics:metrics views:views]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-topLineOffsetY-[topLine(topLineThickness)]" options:0 metrics:metrics views:views]];
+    NSDictionary *metrics = @{
+                              @"toolTipLabel_offset_y":@(27.5),
+                              @"toolTipLabel_topLine_gap": @(10),
+                              @"topLine_height":@(0.5),
+                              
+                              };
+    
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[headerView]|" options:0 metrics:metrics views:views]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[contentView]|" options:0 metrics:metrics views:views]];
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[headerView][contentView]" options:0 metrics:metrics views:views]];
+    
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[textView]|" options:0 metrics:metrics views:views]];
+    [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.textView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
+    
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[toolTipLabel]|" options:0 metrics:metrics views:views]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-toolTipOffsetY-[toolTipLabel]" options:0 metrics:metrics views:views]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[topLine]|" options:0 metrics:metrics views:views]];
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[typingView]-10-|" options:0 metrics:metrics views:views]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[topLine]-10-[typingView]" options:0 metrics:metrics views:views]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-toolTipLabel_offset_y-[toolTipLabel]-toolTipLabel_topLine_gap-[topLine(topLine_height)]|" options:0 metrics:metrics views:views]];
     
+    //Bottom constraint (tracked for change on keyboard)
+    self.contentViewBottomConstraint = [NSLayoutConstraint constraintWithItem:self.contentView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeBottom multiplier:1 constant:0];
     
-    
-    self.containerViewBottomConstraint = [NSLayoutConstraint constraintWithItem:self.typingView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeBottom multiplier:1 constant:-10];
-    
-    [self addConstraint:self.containerViewBottomConstraint];
+    [self addConstraint:self.contentViewBottomConstraint];
     
 }
 

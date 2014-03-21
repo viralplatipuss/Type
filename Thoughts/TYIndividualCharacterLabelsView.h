@@ -8,8 +8,8 @@
 
 /*
 
- Abstract:      Will represent the given text visually-similar to a left-adjusted multiline UILabel. But each character is represented by its own UILabel.
-                Each character's UILabel can be accessed via an index value. Allowing full control and customization for each character.
+ Abstract:      Will represent the given text visually matching a left-adjusted UILabel, but each character consists of its own UILabel.
+                Each character's UILabel can be accessed via an index value. Allowing full control and customization.
  
  Optimize:      Right now UILabels are created and destroyed every time text is changed. Should re-use them. Potentially add a cache system.
                 Optimize the changes to text so only changed lines need to be updated, also only update from the first character change in a line.
@@ -24,7 +24,7 @@
  
  - Find better solution to NSNull entries for new-line characters.
  
- - Change implementation for lining up labels. When using caps there's an incorrect offset. Try "Tom".
+ - Implement additional text alignment styles. (center/right adjusted)
  
  */
 
@@ -41,5 +41,8 @@
 @property (nonatomic, strong, readwrite) UIFont *font;
 
 -(UILabel *)labelForCharacterAtIndex:(NSUInteger)index;
+
+//Get content/frame size with certain text & font.
+-(CGSize)sizeWithText:(NSString *)text font:(UIFont *)font;
 
 @end

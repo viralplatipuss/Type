@@ -1,10 +1,9 @@
 //
 //  UIColor+HexString.m
-//  Type
 //
-//  Created by Dom Chapman on 3/17/14.
-//  Copyright (c) 2014 Dom Chapman. All rights reserved.
+//Written by Micah Hainline (http://stackoverflow.com/questions/1560081/how-can-i-create-a-uicolor-from-a-hex-string)
 //
+
 
 #import "UIColor+HexString.h"
 

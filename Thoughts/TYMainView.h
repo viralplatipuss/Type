@@ -11,8 +11,8 @@
 
 @interface TYMainView : UIView
 
-@property (nonatomic, strong, readonly) UILabel *toolTipLabel;
+@property (nonatomic, strong, readonly) UITextView *textView;
 
-@property (nonatomic, strong, readonly) TYTypingView *typingView;
+@property (nonatomic, strong, readonly) UIView *headerView;
 
 @end

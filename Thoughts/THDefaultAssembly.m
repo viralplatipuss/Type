@@ -16,7 +16,7 @@
 
 static NSString * const kCoreDataThoughtContextSQLDBName = @"Thoughts.sqlite";
 
-static const BOOL testVC = NO;
+static const BOOL testVC = YES;
 
 @interface THDefaultAssembly()
 

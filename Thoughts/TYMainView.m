@@ -2,37 +2,89 @@
 //  TYMainView.m
 //  Type
 //
-//  Created by Dom Chapman on 3/17/14.
+//  Created by Dom Chapman on 4/10/14.
 //  Copyright (c) 2014 Dom Chapman. All rights reserved.
 //
 
 #import "TYMainView.h"
 #import "UIColor+HexString.h"
 
+
+//Default Text
+static NSString * const kHeaderDefaultText = @"Type.";
+
+static NSString * const kClearLabelText = @"Tap to clear.";
+
+
+//Colors/Alpha
 static NSString * const kBackgroundColor = @"3497da";
 
-static NSString * const kApplicationFontName = @"Raleway-Light";
+static NSString * const kMainTextColor = @"002fb5";
 
-static const CGFloat kToolTipFontSize = 12;
+static NSString * const kTextViewTintColor = @"68ffff";
+
+static NSString * const kHeaderTextColor = @"002fb5";
+
+static const CGFloat kHeaderBottomLineAlpha = 0.2;
+
+static const CGFloat kClearHeaderBackgroundAlpha = 0.4;
+
+static const CGFloat kCharacterCountTextAlpha = 0.4;
 
 
-@interface TYMainView() <UITextViewDelegate>
+//Font Names
+static NSString * const kMainFontName = @"Raleway-Light";
 
 
-//Containers
+//Font Sizes
+static const CGFloat kMainFontSize = 37;
 
+static const CGFloat kHeaderFontSize = 12;
+
+static const CGFloat kCharacterCountFontSize = 28;
+
+
+//Layout/Padding
+static const CGFloat kHeaderBottomLineHeight = 0.5;
+
+static const CGFloat kHeaderContentHeight = 29.5; //Height of the header view, not including inset or bottom line.
+
+static const CGFloat kTextViewPaddingX = 6;
+
+static const CGFloat kCharacterCountPadding = 6;
+
+
+
+@interface TYMainView()
+
+
+//Container Views
+@property (nonatomic, strong, readonly) UIView *headerContentsView;
 
 @property (nonatomic, strong, readonly) UIView *contentView;
 
-//Header Subviews
-@property (nonatomic, strong, readonly) UIView *topLine;
 
-@property (nonatomic, strong, readonly) UILabel *toolTipLabel;
-
-//Content Subviews
+//Asthetic Views
+@property (nonatomic, strong, readonly) UIView *headerBottomLine;
 
 
-//Misc
+//Fonts
+@property (nonatomic, strong, readonly) UIFont *mainFont;
+
+@property (nonatomic, strong, readonly) UIFont *headerFont;
+
+@property (nonatomic, strong, readonly) UIFont *characterCountFont;
+
+
+//Colors
+@property (nonatomic, strong, readonly) UIColor *headerTextColor;
+
+@property (nonatomic, strong, readonly) UIColor *mainTextColor;
+
+
+//Constraints
+@property (nonatomic, strong, readwrite) NSLayoutConstraint *headerContentsViewTopConstraint;
+
 @property (nonatomic, strong, readwrite) NSLayoutConstraint *contentViewBottomConstraint;
 
 
@@ -40,33 +92,24 @@ static const CGFloat kToolTipFontSize = 12;
 
 @implementation TYMainView
 
-@synthesize headerView = _headerView, contentView = _contentView, topLine = _topLine, toolTipLabel = _toolTipLabel, textView = _textView, contentViewBottomConstraint = _contentViewBottomConstraint;
+@synthesize headerView = _headerView,
+            headerContentsView = _headerContentsView,
+            contentView = _contentView,
+            headerBottomLine = _headerBottomLine,
+            clearLabel = _clearLabel,
+            headerLabel = _headerLabel,
+            characterCountLabel = _characterCountLabel,
+            transitionView = _transitionView,
+            textSlidingView = _textSlidingView,
+            scrollingTrackerView = _scrollingTrackerView,
+            textView = _textView;
 
--(void)textViewDidChange:(UITextView *)textView
+
+#pragma mark - Init
+
+-(instancetype)init
 {
-    NSLog(@"bing");
-    
-    NSLog(@"%@",NSStringFromCGSize(self.textView.contentSize));
-    
-    [self.textView caretRectForPosition:nil];
-    
-    UITextRange *textRange = [self.textView textRangeFromPosition:self.textView.beginningOfDocument toPosition:self.textView.endOfDocument];
-    
-    CGRect rect = [self.textView firstRectForRange:textRange];
-    
-    NSLog(@"%@",NSStringFromCGRect(rect));
-    
-    //self.textView
-    
-    if([textView.text isEqualToString:@"China is a countryfor."]) {
-        
-        NSLog(@"BOOP");
-        //self.textView.frame = rect;
-        [self.textView removeFromSuperview];
-        [self addSubview:self.textView];
-        [self setNeedsUpdateConstraints];
-    }
-    
+    return [self initWithFrame:CGRectZero];
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -74,27 +117,98 @@ static const CGFloat kToolTipFontSize = 12;
     self = [super initWithFrame:frame];
     if (self) {
         [self setupView];
-        [self registerForKeyboardNotifications];
-        
-        [self.textView becomeFirstResponder];
     }
     return self;
 }
+
+
+#pragma mark - View Setup
 
 -(void)setupView
 {
     self.backgroundColor = [UIColor colorWithHexString:kBackgroundColor];
     
+    [self.contentView addSubview:self.textView];
+    [self.contentView addSubview:self.transitionView];
+    [self.contentView addSubview:self.textSlidingView];
+    [self.contentView addSubview:self.characterCountLabel];
+    
     [self addSubview:self.contentView];
+    
+    [self.headerContentsView addSubview:self.headerLabel];
+    [self.headerContentsView addSubview:self.clearLabel];
+    [self.headerView addSubview:self.headerContentsView];
+    
+    [self.headerView addSubview:self.headerBottomLine];
     [self addSubview:self.headerView];
     
-    [self.contentView addSubview:self.textView];
-    
-    [self.headerView addSubview:self.toolTipLabel];
-    [self.headerView addSubview:self.topLine];
+    [self addSubview:self.scrollingTrackerView];
     
     [self setupConstraints];
 }
+
+
+#pragma mark - Public Properties
+
+-(CGFloat)textViewPaddingX
+{
+    return kTextViewPaddingX;
+}
+
+-(void)setBounds:(CGRect)bounds
+{
+    [super setBounds:bounds];
+    
+    //If view's size changes, make sure text layout width is correctly set to match the textView's width
+    self.transitionView.textPreferredMaxLayoutWidth = CGRectGetWidth(self.textView.bounds);
+    self.textSlidingView.preferredMaxLayoutWidth = CGRectGetWidth(self.textView.bounds);
+}
+
+-(CGFloat)headerInset
+{
+    return self.headerContentsViewTopConstraint.constant;
+}
+
+-(void)setHeaderInset:(CGFloat)headerInset
+{
+    self.headerContentsViewTopConstraint.constant = headerInset;
+}
+
+-(UIColor *)clearHeaderColor
+{
+    return [[UIColor redColor] colorWithAlphaComponent:kClearHeaderBackgroundAlpha];
+}
+
+
+#pragma mark - Private Properties
+
+-(UIFont *)mainFont
+{
+    return [UIFont fontWithName:kMainFontName size:kMainFontSize];
+}
+
+-(UIFont *)headerFont
+{
+    return [UIFont fontWithName:kMainFontName size:kHeaderFontSize];
+}
+
+-(UIFont *)characterCountFont
+{
+    return [UIFont fontWithName:kMainFontName size:kCharacterCountFontSize];
+}
+
+-(UIColor *)headerTextColor
+{
+    return [UIColor colorWithHexString:kHeaderTextColor];
+}
+
+-(UIColor *)mainTextColor
+{
+    return [UIColor colorWithHexString:kMainTextColor];
+}
+
+
+//Views
 
 -(UIView *)headerView
 {
@@ -105,158 +219,225 @@ static const CGFloat kToolTipFontSize = 12;
     return _headerView;
 }
 
+-(UIView *)headerContentsView
+{
+    if(!_headerContentsView) {
+        _headerContentsView = [UIView new];
+    }
+    
+    return _headerContentsView;
+}
+
 -(UIView *)contentView
 {
-    if (!_contentView) {
+    if(!_contentView) {
         _contentView = [UIView new];
     }
     
     return _contentView;
 }
 
--(UILabel *)toolTipLabel
+-(UIView *)headerBottomLine
 {
-    if(!_toolTipLabel) {
-        _toolTipLabel = [UILabel new];
-        _toolTipLabel.textAlignment = NSTextAlignmentCenter;
-        _toolTipLabel.font = [UIFont fontWithName:kApplicationFontName size:kToolTipFontSize];
-        _toolTipLabel.textColor = [UIColor colorWithRed:0/255.0 green:47/255.0 blue:181/255.0 alpha:1];
-        _toolTipLabel.text = @"Just Type.";
+    if(!_headerBottomLine) {
+        _headerBottomLine = [UIView new];
+        _headerBottomLine.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:kHeaderBottomLineAlpha];
     }
     
-    return _toolTipLabel;
+    return _headerBottomLine;
 }
 
--(UIView *)topLine
+-(UILabel *)headerLabel
 {
-    if(!_topLine) {
-        _topLine = [UIView new];
-        _topLine.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.2];
+    if(!_headerLabel) {
+        _headerLabel = [UILabel new];
+        _headerLabel.textAlignment = NSTextAlignmentCenter;
+        _headerLabel.font = self.headerFont;
+        _headerLabel.textColor = self.headerTextColor;
+        _headerLabel.text = kHeaderDefaultText;
     }
     
-    return _topLine;
+    return _headerLabel;
+}
+
+-(UILabel *)clearLabel
+{
+    if(!_clearLabel) {
+        _clearLabel = [UILabel new];
+        _clearLabel.textAlignment = NSTextAlignmentCenter;
+        _clearLabel.font = self.headerFont;
+        _clearLabel.textColor = [UIColor whiteColor];
+        _clearLabel.text = kClearLabelText;
+    }
+    
+    return _clearLabel;
+}
+
+-(UILabel *)characterCountLabel
+{
+    if(!_characterCountLabel) {
+        _characterCountLabel = [UILabel new];
+        _characterCountLabel.textAlignment = NSTextAlignmentRight;
+        _characterCountLabel.font = self.characterCountFont;
+        _characterCountLabel.textColor = [[UIColor whiteColor] colorWithAlphaComponent:kCharacterCountTextAlpha];
+    }
+    
+    return _characterCountLabel;
 }
 
 -(UITextView *)textView
 {
     if(!_textView) {
         _textView = [UITextView new];
-        _textView.backgroundColor = [UIColor redColor];
-        _textView.font = [UIFont fontWithName:kApplicationFontName size:37];
+        _textView.backgroundColor = [UIColor clearColor];
+        _textView.tintColor = [UIColor colorWithHexString:kTextViewTintColor];
+        _textView.textColor = self.mainTextColor;
+        _textView.font = self.mainFont;
         _textView.keyboardAppearance = UIKeyboardAppearanceDark;
         _textView.returnKeyType = UIReturnKeyDone;
-        _textView.enablesReturnKeyAutomatically = YES;
-        
-        _textView.delegate = self;
-
-        
+        _textView.textContainer.lineFragmentPadding = 0;
         _textView.scrollEnabled = NO;
-
-        _textView.tintColor = [UIColor greenColor];
-        
-            }
+    }
     
     return _textView;
 }
 
--(void)registerForKeyboardNotifications
+-(TYSlidingTextPositionTransitionView *)textSlidingView
 {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    if(!_textSlidingView) {
+        _textSlidingView = [TYSlidingTextPositionTransitionView new];
+        _textSlidingView.font = self.mainFont;
+        _textSlidingView.textColor = self.mainTextColor;
+    }
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
+    return _textSlidingView;
 }
 
--(void)keyboardWillShow:(NSNotification *)aNotification
+-(TYSharedCharactersTransitionView *)transitionView
 {
+    if(!_transitionView) {
+        _transitionView = [TYSharedCharactersTransitionView new];
+        _transitionView.font = self.mainFont;
+        _transitionView.textColor = self.mainTextColor;
+    }
     
-    NSDictionary *info = [aNotification userInfo];
-    CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-    
-    NSNumber *animationDurationNumber = [info objectForKey:UIKeyboardAnimationDurationUserInfoKey];
-    CGFloat animationDuration = [animationDurationNumber floatValue];
-    
-    [self layoutIfNeeded];
-    self.contentViewBottomConstraint.constant = -keyboardSize.height;
-    [UIView animateWithDuration:animationDuration delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-        
-        [self layoutIfNeeded];
-        
-    } completion:nil];
-    
+    return _transitionView;
 }
 
-- (void)keyboardWillBeHidden:(NSNotification *)aNotification
+-(TYScrollingTrackerView *)scrollingTrackerView
 {
-    NSDictionary *info = [aNotification userInfo];
+    if(!_scrollingTrackerView) {
+        _scrollingTrackerView = [TYScrollingTrackerView new];
+    }
     
-    NSNumber *animationDurationNumber = [info objectForKey:UIKeyboardAnimationDurationUserInfoKey];
-    CGFloat animationDuration = [animationDurationNumber floatValue];
-    
-    [self layoutIfNeeded];
-    self.contentViewBottomConstraint.constant = 0;
-    [UIView animateWithDuration:animationDuration delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-        
-        [self layoutIfNeeded];
-        
-    } completion:nil];
-
+    return _scrollingTrackerView;
 }
 
--(void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
+
+#pragma mark - Constraints
 
 -(void)setupConstraints
 {
-    
     self.headerView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.headerContentsView.translatesAutoresizingMaskIntoConstraints = NO;
     self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
     
-    self.textView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.headerLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    self.clearLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    self.headerBottomLine.translatesAutoresizingMaskIntoConstraints = NO;
+    self.characterCountLabel.translatesAutoresizingMaskIntoConstraints = NO;
     
-    self.topLine.translatesAutoresizingMaskIntoConstraints = NO;
-    self.toolTipLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    self.textView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.transitionView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.textSlidingView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.scrollingTrackerView.translatesAutoresizingMaskIntoConstraints = NO;
     
     
     NSDictionary *views = @{
                             @"headerView": self.headerView,
+                            @"headerContentsView": self.headerContentsView,
                             @"contentView": self.contentView,
                             
-                            @"textView": self.textView,
+                            @"headerLabel": self.headerLabel,
+                            @"clearLabel": self.clearLabel,
+                            @"characterCountLabel": self.characterCountLabel,
+                            @"headerBottomLine": self.headerBottomLine,
                             
-                            @"topLine": self.topLine,
-                            @"toolTipLabel": self.toolTipLabel,
+                            @"textView": self.textView,
+                            @"textSlidingView": self.textSlidingView,
+                            @"transitionView": self.transitionView,
+                            @"scrollingTrackerView": self.scrollingTrackerView
+                            
                             };
     
-    
     NSDictionary *metrics = @{
-                              @"toolTipLabel_offset_y":@(27.5),
-                              @"toolTipLabel_topLine_gap": @(10),
-                              @"topLine_height":@(0.5),
-                              
+                              @"headerHeight": @(kHeaderContentHeight),
+                              @"headerBottomLineHeight": @(kHeaderBottomLineHeight),
+                              @"textViewPaddingX": @(kTextViewPaddingX),
+                              @"characterCountPadding": @(kCharacterCountPadding)
                               };
     
     
+    //ScrollingTrackerView
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[scrollingTrackerView]|" options:0 metrics:metrics views:views]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[scrollingTrackerView]|" options:0 metrics:metrics views:views]];
+    
+    //TransitionView
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[transitionView]|" options:0 metrics:metrics views:views]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[transitionView]|" options:0 metrics:metrics views:views]];
+    
+    //TextSlidingView
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[textSlidingView]|" options:0 metrics:metrics views:views]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[textSlidingView]|" options:0 metrics:metrics views:views]];
+    
+    //TextView
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-textViewPaddingX-[textView]-textViewPaddingX-|" options:0 metrics:metrics views:views]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.textView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
+    
+    //CharacterCountLabel
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[characterCountLabel]-characterCountPadding-|" options:0 metrics:metrics views:views]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[characterCountLabel]-characterCountPadding-|" options:0 metrics:metrics views:views]];
+    
+    //ClearLabel
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[clearLabel]|" options:0 metrics:metrics views:views]];
+    
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.clearLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.headerContentsView attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
+    
+    
+    //HeaderLabel
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[headerLabel]|" options:0 metrics:metrics views:views]];
+    
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.headerLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.headerContentsView attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
+    
+    
+    //HeaderContentsView
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[headerContentsView]|" options:0 metrics:metrics views:views]];
+    
+    self.headerContentsViewTopConstraint = [NSLayoutConstraint constraintWithItem:self.headerContentsView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.headerView attribute:NSLayoutAttributeTop multiplier:1 constant:self.headerInset];
+    
+    [self addConstraint:self.headerContentsViewTopConstraint];
+    
+    //HeaderBottomLine
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[headerBottomLine]|" options:0 metrics:metrics views:views]];
+    
+    
+    //HeaderView
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[headerView]|" options:0 metrics:metrics views:views]];
+    
+    
+    //ContentView
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[contentView]|" options:0 metrics:metrics views:views]];
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[headerView][contentView]" options:0 metrics:metrics views:views]];
-    
-    
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[textView]|" options:0 metrics:metrics views:views]];
-    [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.textView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
-    
-    
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[toolTipLabel]|" options:0 metrics:metrics views:views]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[topLine]|" options:0 metrics:metrics views:views]];
-    
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-toolTipLabel_offset_y-[toolTipLabel]-toolTipLabel_topLine_gap-[topLine(topLine_height)]|" options:0 metrics:metrics views:views]];
-    
-    //Bottom constraint (tracked for change on keyboard)
     self.contentViewBottomConstraint = [NSLayoutConstraint constraintWithItem:self.contentView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeBottom multiplier:1 constant:0];
     
     [self addConstraint:self.contentViewBottomConstraint];
+    
+    
+    //Multiple Views
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[headerView][contentView]" options:0 metrics:metrics views:views]];
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[headerContentsView(headerHeight)][headerBottomLine(headerBottomLineHeight)]|" options:0 metrics:metrics views:views]];
+    
     
 }
 

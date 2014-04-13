@@ -62,6 +62,15 @@
     
 }
 
+#pragma mark - Helpers
+
+- (void)addThought
+{
+    
+}
+
+#pragma mark - Tests
+
 -(void)testAnyThought
 {
     id <THThought> anyThought = [self.context anyThought];

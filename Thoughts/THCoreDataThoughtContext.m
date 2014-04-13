@@ -144,7 +144,16 @@ static NSString * const kThoughtsDataModelFileName = @"Thoughts";
         return;
     }
     
+    //Pop out of linked list
+    THCoreDataThought *previousThought = thought.previousThought;
+    THCoreDataThought *nextThought = thought.nextThought;
+
+    previousThought.nextThought = nextThought;
+    nextThought.previousThought = previousThought;
+    
     [self.managedObjectContext deleteObject:thought];
+    
+    [self saveContext];
 }
 
 

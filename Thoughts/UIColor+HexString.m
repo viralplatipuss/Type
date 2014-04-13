@@ -4,12 +4,11 @@
 //Written by Micah Hainline (http://stackoverflow.com/questions/1560081/how-can-i-create-a-uicolor-from-a-hex-string)
 //
 
-
 #import "UIColor+HexString.h"
 
 @implementation UIColor (HexString)
 
-+ (UIColor *) colorWithHexString: (NSString *) hexString {
++(UIColor *)colorWithHexString:(NSString *)hexString {
     NSString *colorString = [[hexString stringByReplacingOccurrencesOfString: @"#" withString: @""] uppercaseString];
     CGFloat alpha, red, blue, green;
     switch ([colorString length]) {

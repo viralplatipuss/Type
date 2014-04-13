@@ -233,11 +233,11 @@ static const CGFloat kSlidingAnimationsEndProgress = 0.8; //Cut off animation ea
         
         if(!text.length) {
             //Pressed backspace
+
             if(self.thought) {
-                
+
                 self.editingThought = YES;
                 self.editing = YES;
-                
                 
                 self.mainView.textView.text = self.thought.text;
                 [self textViewDidChange:self.mainView.textView];
@@ -332,7 +332,14 @@ static const CGFloat kSlidingAnimationsEndProgress = 0.8; //Cut off animation ea
     if(!self.mainView.textView.text.length) {
         
         if(self.editingThought) {
+            
             id <TYThought> previousThought = self.thought.previousThought;
+            
+            if(previousThought == self.thought) {
+                //This is the last thought (and therefore referencing itself as its previous), nil it.
+                previousThought = nil;
+            }
+            
             [self.thought deleteThought];
             self.thought = previousThought;
         }
@@ -369,8 +376,10 @@ static const CGFloat kSlidingAnimationsEndProgress = 0.8; //Cut off animation ea
         
     } completion:^(BOOL finished) {
         
-        self.mainView.transitionView.hidden = YES;
-        self.mainView.transitionView.alpha = 1;
+        if(finished) {
+            self.mainView.transitionView.hidden = YES;
+            self.mainView.transitionView.alpha = 1;
+        }
         
     }];
 }
@@ -395,10 +404,12 @@ static const CGFloat kSlidingAnimationsEndProgress = 0.8; //Cut off animation ea
         
     } completion:^(BOOL finished) {
     
-        self.mainView.scrollingTrackerView.hidden = NO;
-        
-        self.mainView.textView.hidden = YES;
-        self.mainView.textView.alpha = 1;
+        if(finished) {
+            self.mainView.scrollingTrackerView.hidden = NO;
+            
+            self.mainView.textView.hidden = YES;
+            self.mainView.textView.alpha = 1;
+        }
         
     }];
 }
@@ -516,8 +527,10 @@ static const CGFloat kSlidingAnimationsEndProgress = 0.8; //Cut off animation ea
         
     } completion:^(BOOL finished) {
         
+        if(finished) {
             self.mainView.headerLabel.hidden = YES;
             self.mainView.headerLabel.alpha = 1;
+        }
         
     }];
     
@@ -550,8 +563,10 @@ static const CGFloat kSlidingAnimationsEndProgress = 0.8; //Cut off animation ea
         
     } completion:^(BOOL finished) {
     
-        self.mainView.clearLabel.hidden = YES;
-        self.mainView.clearLabel.alpha = 1;
+        if(finished) {
+            self.mainView.clearLabel.hidden = YES;
+            self.mainView.clearLabel.alpha = 1;
+        }
         
     }];
 }
@@ -581,8 +596,10 @@ static const CGFloat kSlidingAnimationsEndProgress = 0.8; //Cut off animation ea
         
     } completion:^(BOOL finished) {
         
-        self.mainView.characterCountLabel.hidden = YES;
-        self.mainView.characterCountLabel.alpha = 1;
+        if(finished) {
+            self.mainView.characterCountLabel.hidden = YES;
+            self.mainView.characterCountLabel.alpha = 1;
+        }
         
     }];
 }

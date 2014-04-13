@@ -8,27 +8,36 @@
 
 #import "TYDefaultAssembly.h"
 #import "TYCoreDataThoughtContext.h"
+#import "TYUserDefaultsStringPersistor.h"
+
 #import "TYMainViewController.h"
 
 
 //Constants
 static NSString * const kCoreDataThoughtContextSQLDBName = @"Thoughts.sqlite";
 
+static NSString * const kThoughtTokenUserDefaultsKey = @"thoughtToken";
+
 
 @interface TYDefaultAssembly()
 
 @property (nonatomic, strong, readonly) id <TYThoughtContext> thoughtContext;
 
+@property (nonatomic, strong, readonly) id <TYStringPersistor> thoughtTokenPersistor;
+
 @end
 
 @implementation TYDefaultAssembly
 
-@synthesize viewController = _viewController, thoughtContext = _thoughtContext;
+@synthesize viewController = _viewController,
+            thoughtContext = _thoughtContext,
+            thoughtTokenPersistor = _thoughtTokenPersistor;
+
 
 -(UIViewController *)viewController
 {
     if(!_viewController) {
-        _viewController = [[TYMainViewController alloc] initWithThoughtContext:self.thoughtContext];
+        _viewController = [[TYMainViewController alloc] initWithThoughtContext:self.thoughtContext thoughtTokenPersistor:self.thoughtTokenPersistor];
     }
     
     return _viewController;
@@ -44,6 +53,15 @@ static NSString * const kCoreDataThoughtContextSQLDBName = @"Thoughts.sqlite";
     }
     
     return _thoughtContext;
+}
+
+-(id <TYStringPersistor>)thoughtTokenPersistor
+{
+    if(!_thoughtTokenPersistor) {
+        _thoughtTokenPersistor = [[TYUserDefaultsStringPersistor alloc] initWithKey:kThoughtTokenUserDefaultsKey];
+    }
+    
+    return _thoughtTokenPersistor;
 }
 
 @end

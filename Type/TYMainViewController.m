@@ -46,6 +46,8 @@ static const CGFloat kSlidingAnimationsEndProgress = 0.8; //Cut off animation ea
 
 @property (nonatomic, strong, readwrite) id <TYThought> thought;
 
+@property (nonatomic, strong, readonly) id <TYStringPersistor> thoughtTokenPersistor;
+
 //Editing Flags
 @property (nonatomic, assign, readwrite) BOOL editing;
 
@@ -70,11 +72,12 @@ static const CGFloat kSlidingAnimationsEndProgress = 0.8; //Cut off animation ea
 
 #pragma mark - Init
 
--(instancetype)initWithThoughtContext:(id<TYThoughtContext>)thoughtContext
+-(instancetype)initWithThoughtContext:(id<TYThoughtContext>)thoughtContext thoughtTokenPersistor:(id<TYStringPersistor>)thoughtTokenPersistor
 {
     self = [super init];
     if(self) {
         _thoughtContext = thoughtContext;
+        _thoughtTokenPersistor = thoughtTokenPersistor;
     }
     
     return self;
@@ -102,9 +105,8 @@ static const CGFloat kSlidingAnimationsEndProgress = 0.8; //Cut off animation ea
     [super viewDidLoad];
     
     //Model Setup
+    self.thought = [self.thoughtContext thoughtForUnqiueToken:self.thoughtTokenPersistor.string];
     
-    self.thought = [self.thoughtContext anyThought];
-
     //View Setup
     
     [self.mainView addGestureRecognizer:self.tapGesture];
@@ -148,6 +150,8 @@ static const CGFloat kSlidingAnimationsEndProgress = 0.8; //Cut off animation ea
 -(void)setThought:(id<TYThought>)thought
 {
     _thought = thought;
+    
+    self.thoughtTokenPersistor.string = [self.thought uniqueToken];
     
     [self updateTransitionViewsText];
 }

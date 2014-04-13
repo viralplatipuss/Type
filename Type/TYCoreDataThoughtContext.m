@@ -75,10 +75,18 @@ static NSString * const kThoughtsDataModelFileName = @"Thoughts";
 
 -(TYCoreDataThought *)thoughtForUnqiueToken:(NSString *)uniqueToken
 {
+    if(!uniqueToken) {
+        return nil;
+    }
+    
     NSURL *url = [NSURL URLWithString:uniqueToken];
     //NSURL *url = [NSURL URLWithString:[uniqueToken stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     
     NSManagedObjectID *objectID = [self.persistentStoreCoordinator managedObjectIDForURIRepresentation:url];
+    
+    if(!objectID) {
+        return nil;
+    }
     
     TYCoreDataThought *thought = (TYCoreDataThought *)[self.managedObjectContext objectWithID:objectID];
     thought.thoughtContext = self;

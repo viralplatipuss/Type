@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F266091818DA08800062A7B3 /* NSString+WordWrappedLineBreaks.m in Sources */ = {isa = PBXBuildFile; fileRef = F266091718DA08800062A7B3 /* NSString+WordWrappedLineBreaks.m */; };
+		F266EACA18FB348C00C1D0A3 /* TYUserDefaultsStringPersistor.m in Sources */ = {isa = PBXBuildFile; fileRef = F266EAC918FB348C00C1D0A3 /* TYUserDefaultsStringPersistor.m */; };
 		F27FC52918F24353005AF1B6 /* TYSlidingTextPositionTransitionView.m in Sources */ = {isa = PBXBuildFile; fileRef = F27FC52818F24353005AF1B6 /* TYSlidingTextPositionTransitionView.m */; };
 		F27FC53018F38E5D005AF1B6 /* TYMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F27FC52F18F38E5D005AF1B6 /* TYMainViewController.m */; };
 		F2827D7D18D2064E00B97876 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2827D7C18D2064E00B97876 /* Foundation.framework */; };
@@ -58,6 +59,9 @@
 /* Begin PBXFileReference section */
 		F266091618DA08800062A7B3 /* NSString+WordWrappedLineBreaks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+WordWrappedLineBreaks.h"; sourceTree = "<group>"; };
 		F266091718DA08800062A7B3 /* NSString+WordWrappedLineBreaks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+WordWrappedLineBreaks.m"; sourceTree = "<group>"; };
+		F266EAC618FB345400C1D0A3 /* TYStringPersistor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TYStringPersistor.h; sourceTree = "<group>"; };
+		F266EAC818FB348C00C1D0A3 /* TYUserDefaultsStringPersistor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYUserDefaultsStringPersistor.h; sourceTree = "<group>"; };
+		F266EAC918FB348C00C1D0A3 /* TYUserDefaultsStringPersistor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYUserDefaultsStringPersistor.m; sourceTree = "<group>"; };
 		F27FC52718F24353005AF1B6 /* TYSlidingTextPositionTransitionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYSlidingTextPositionTransitionView.h; sourceTree = "<group>"; };
 		F27FC52818F24353005AF1B6 /* TYSlidingTextPositionTransitionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYSlidingTextPositionTransitionView.m; sourceTree = "<group>"; };
 		F27FC52E18F38E5D005AF1B6 /* TYMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYMainViewController.h; sourceTree = "<group>"; };
@@ -226,6 +230,35 @@
 			path = Type;
 			sourceTree = "<group>";
 		};
+		F266EAC518FB342F00C1D0A3 /* Thoughts */ = {
+			isa = PBXGroup;
+			children = (
+				F2C6D80C18D3B6DE00265BF3 /* Thought */,
+				F2C6D80B18D3B6CA00265BF3 /* ThoughtSpecification */,
+				F2C6D80D18D3B6E400265BF3 /* ThoughtContext */,
+				F2827D9018D2064E00B97876 /* Thoughts.xcdatamodeld */,
+			);
+			name = Thoughts;
+			sourceTree = "<group>";
+		};
+		F266EAC718FB345A00C1D0A3 /* StringPersistor */ = {
+			isa = PBXGroup;
+			children = (
+				F266EAC618FB345400C1D0A3 /* TYStringPersistor.h */,
+				F266EACB18FB349800C1D0A3 /* UserDefaults */,
+			);
+			name = StringPersistor;
+			sourceTree = "<group>";
+		};
+		F266EACB18FB349800C1D0A3 /* UserDefaults */ = {
+			isa = PBXGroup;
+			children = (
+				F266EAC818FB348C00C1D0A3 /* TYUserDefaultsStringPersistor.h */,
+				F266EAC918FB348C00C1D0A3 /* TYUserDefaultsStringPersistor.m */,
+			);
+			name = UserDefaults;
+			sourceTree = "<group>";
+		};
 		F27FC52A18F24357005AF1B6 /* SlidingTextAlignmentView */ = {
 			isa = PBXGroup;
 			children = (
@@ -314,10 +347,8 @@
 		F2827DB618D240CC00B97876 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				F2C6D80C18D3B6DE00265BF3 /* Thought */,
-				F2C6D80B18D3B6CA00265BF3 /* ThoughtSpecification */,
-				F2C6D80D18D3B6E400265BF3 /* ThoughtContext */,
-				F2827D9018D2064E00B97876 /* Thoughts.xcdatamodeld */,
+				F266EAC718FB345A00C1D0A3 /* StringPersistor */,
+				F266EAC518FB342F00C1D0A3 /* Thoughts */,
 			);
 			name = Domain;
 			sourceTree = "<group>";
@@ -558,6 +589,7 @@
 				F28F2FB018F71F30004ECFEB /* TYMainView.m in Sources */,
 				F266091818DA08800062A7B3 /* NSString+WordWrappedLineBreaks.m in Sources */,
 				F2D4139418E5106C009918C3 /* TYSharedCharactersTransitionView.m in Sources */,
+				F266EACA18FB348C00C1D0A3 /* TYUserDefaultsStringPersistor.m in Sources */,
 				F2B7119618DE0D2500E88E34 /* NSString+CharactersAndIndexes.m in Sources */,
 				F2827D8B18D2064E00B97876 /* main.m in Sources */,
 				F2827DB318D20CC400B97876 /* TYCoreDataThought.m in Sources */,

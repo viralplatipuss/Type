@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "TYThoughtContext.h"
+#import "TYStringPersistor.h"
 
 @interface TYMainViewController : UIViewController
 
--(instancetype)initWithThoughtContext:(id<TYThoughtContext>)thoughtContext;
+-(instancetype)initWithThoughtContext:(id<TYThoughtContext>)thoughtContext thoughtTokenPersistor:(id<TYStringPersistor>)thoughtTokenPersistor;
 
 @end

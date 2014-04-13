@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "THThoughtContext.h"
+#import "TYThoughtContext.h"
 
 @interface TYMainViewController : UIViewController
 
--(instancetype)initWithThoughtContext:(id<THThoughtContext>)thoughtContext;
+-(instancetype)initWithThoughtContext:(id<TYThoughtContext>)thoughtContext;
 
 @end

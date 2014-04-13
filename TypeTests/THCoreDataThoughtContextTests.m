@@ -7,11 +7,11 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "THCoreDataThoughtContext.h"
+#import "TYCoreDataThoughtContext.h"
 
 @interface THCoreDataThoughtContextTests : XCTestCase
 
-@property (nonatomic, strong, readwrite) THCoreDataThoughtContext *context;
+@property (nonatomic, strong, readwrite) TYCoreDataThoughtContext *context;
 
 @property (nonatomic, strong, readwrite) NSMutableArray *testThoughts;
 
@@ -26,14 +26,14 @@
     
     self.testThoughts = [NSMutableArray array];
     
-    self.context = [[THCoreDataThoughtContext alloc] initWithPersistentStoreType:NSInMemoryStoreType URL:nil];
+    self.context = [[TYCoreDataThoughtContext alloc] initWithPersistentStoreType:NSInMemoryStoreType URL:nil];
     XCTAssertNotNil(self.context, @"Cannot create core data thought context.");
     
     //Add 3 test thoughts into context for testing.
     
     for (NSUInteger i=0; i<3; i++) {
         
-        THThoughtSpecification *specification = [THThoughtSpecification new];
+        TYThoughtSpecification *specification = [TYThoughtSpecification new];
         
         XCTAssertNotNil(specification, @"Cannot create thought specification.");
         
@@ -43,7 +43,7 @@
         
         XCTAssertEqual(specification.text, testThoughtText, @"Failed to set text on thought specification.");
         
-        id <THThought> thought = [self.context createThoughtWithSpecification:specification];
+        id <TYThought> thought = [self.context createThoughtWithSpecification:specification];
         
         XCTAssertNotNil(thought, @"Failed to return created thought.");
         
@@ -73,7 +73,7 @@
 
 -(void)testAnyThought
 {
-    id <THThought> anyThought = [self.context anyThought];
+    id <TYThought> anyThought = [self.context anyThought];
     
     XCTAssertNotNil(anyThought, @"Failed to return any thought.");
     

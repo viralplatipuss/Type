@@ -42,9 +42,9 @@ static const CGFloat kSlidingAnimationsEndProgress = 0.8; //Cut off animation ea
 @property (nonatomic, strong, readonly) TYMainView *mainView;
 
 //Model
-@property (nonatomic, strong, readonly) id <THThoughtContext> thoughtContext;
+@property (nonatomic, strong, readonly) id <TYThoughtContext> thoughtContext;
 
-@property (nonatomic, strong, readwrite) id <THThought> thought;
+@property (nonatomic, strong, readwrite) id <TYThought> thought;
 
 //Editing Flags
 @property (nonatomic, assign, readwrite) BOOL editing;
@@ -70,7 +70,7 @@ static const CGFloat kSlidingAnimationsEndProgress = 0.8; //Cut off animation ea
 
 #pragma mark - Init
 
--(instancetype)initWithThoughtContext:(id<THThoughtContext>)thoughtContext
+-(instancetype)initWithThoughtContext:(id<TYThoughtContext>)thoughtContext
 {
     self = [super init];
     if(self) {
@@ -145,7 +145,7 @@ static const CGFloat kSlidingAnimationsEndProgress = 0.8; //Cut off animation ea
 
 #pragma mark - Private Properties
 
--(void)setThought:(id<THThought>)thought
+-(void)setThought:(id<TYThought>)thought
 {
     _thought = thought;
     
@@ -274,13 +274,13 @@ static const CGFloat kSlidingAnimationsEndProgress = 0.8; //Cut off animation ea
             
             if(self.mainView.textView.text.length) {
                 
-                THThoughtSpecification *thoughtSpec = [THThoughtSpecification new];
+                TYThoughtSpecification *thoughtSpec = [TYThoughtSpecification new];
                 thoughtSpec.text = self.mainView.textView.text;
                 
                 if(self.editingThought) {
                     
                     //Replace thought
-                    id <THThought> replacedThought = [self.thought.previousThought createThoughtAfterThisWithSpecification:thoughtSpec];
+                    id <TYThought> replacedThought = [self.thought.previousThought createThoughtAfterThisWithSpecification:thoughtSpec];
                     [self.thought deleteThought];
                     self.thought = replacedThought;
                     
@@ -328,7 +328,7 @@ static const CGFloat kSlidingAnimationsEndProgress = 0.8; //Cut off animation ea
     if(!self.mainView.textView.text.length) {
         
         if(self.editingThought) {
-            id <THThought> previousThought = self.thought.previousThought;
+            id <TYThought> previousThought = self.thought.previousThought;
             [self.thought deleteThought];
             self.thought = previousThought;
         }

@@ -1,13 +1,13 @@
 //
-//  THDefaultAssembly.m
-//  Thoughts
+//  TYDefaultAssembly.m
+//  Type
 //
 //  Created by Dom Chapman on 3/12/14.
 //  Copyright (c) 2014 Dom Chapman. All rights reserved.
 //
 
-#import "THDefaultAssembly.h"
-#import "THCoreDataThoughtContext.h"
+#import "TYDefaultAssembly.h"
+#import "TYCoreDataThoughtContext.h"
 #import "TYMainViewController.h"
 
 
@@ -15,13 +15,13 @@
 static NSString * const kCoreDataThoughtContextSQLDBName = @"Thoughts.sqlite";
 
 
-@interface THDefaultAssembly()
+@interface TYDefaultAssembly()
 
-@property (nonatomic, strong, readonly) id <THThoughtContext> thoughtContext;
+@property (nonatomic, strong, readonly) id <TYThoughtContext> thoughtContext;
 
 @end
 
-@implementation THDefaultAssembly
+@implementation TYDefaultAssembly
 
 @synthesize viewController = _viewController, thoughtContext = _thoughtContext;
 
@@ -34,13 +34,13 @@ static NSString * const kCoreDataThoughtContextSQLDBName = @"Thoughts.sqlite";
     return _viewController;
 }
 
--(id <THThoughtContext>)thoughtContext
+-(id <TYThoughtContext>)thoughtContext
 {
     if(!_thoughtContext) {
         NSURL *applicationDocumentsDirectory = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
         NSURL *coreDataSQLDatabaseURL = [applicationDocumentsDirectory URLByAppendingPathComponent:kCoreDataThoughtContextSQLDBName];
         
-        _thoughtContext = [[THCoreDataThoughtContext alloc] initWithPersistentStoreType:NSSQLiteStoreType URL:coreDataSQLDatabaseURL];
+        _thoughtContext = [[TYCoreDataThoughtContext alloc] initWithPersistentStoreType:NSSQLiteStoreType URL:coreDataSQLDatabaseURL];
     }
     
     return _thoughtContext;

@@ -1,18 +1,18 @@
 //
-//  THCoreDataThoughtContext.m
-//  Thoughts
+//  TYCoreDataThoughtContext.m
+//  Type
 //
 //  Created by Dom Chapman on 3/13/14.
 //  Copyright (c) 2014 Dom Chapman. All rights reserved.
 //
 
-#import "THCoreDataThoughtContext.h"
-#import "THCoreDataThought.h"
+#import "TYCoreDataThoughtContext.h"
+#import "TYCoreDataThought.h"
 
 static NSString * const kThoughtsDataModelFileName = @"Thoughts";
 
 
-@interface THCoreDataThoughtContext()
+@interface TYCoreDataThoughtContext()
 
 @property (nonatomic, copy, readonly) NSString *persistentStoreType;
 
@@ -26,7 +26,7 @@ static NSString * const kThoughtsDataModelFileName = @"Thoughts";
 
 @end
 
-@implementation THCoreDataThoughtContext
+@implementation TYCoreDataThoughtContext
 
 @synthesize persistentStoreType = _persistentStoreType, persistentStoreURL = _persistentStoreURL, managedObjectContext = _managedObjectContext, managedObjectModel = _managedObjectModel, persistentStoreCoordinator = _persistentStoreCoordinator;
 
@@ -46,11 +46,11 @@ static NSString * const kThoughtsDataModelFileName = @"Thoughts";
 
 #pragma mark - Public Protocol Methods
 
--(THCoreDataThought *)anyThought
+-(TYCoreDataThought *)anyThought
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     
-    fetchRequest.entity = [NSEntityDescription entityForName:[THCoreDataThought coreDataEntityName] inManagedObjectContext:self.managedObjectContext];
+    fetchRequest.entity = [NSEntityDescription entityForName:[TYCoreDataThought coreDataEntityName] inManagedObjectContext:self.managedObjectContext];
     fetchRequest.fetchLimit = 1;
     
     NSError *fetchError;
@@ -67,28 +67,28 @@ static NSString * const kThoughtsDataModelFileName = @"Thoughts";
         return nil;
     }
     
-    THCoreDataThought *thought = fetchedObjects[0];
+    TYCoreDataThought *thought = fetchedObjects[0];
     thought.thoughtContext = self;
     
     return thought;
 }
 
--(THCoreDataThought *)thoughtForUnqiueToken:(NSString *)uniqueToken
+-(TYCoreDataThought *)thoughtForUnqiueToken:(NSString *)uniqueToken
 {
     NSURL *url = [NSURL URLWithString:uniqueToken];
     //NSURL *url = [NSURL URLWithString:[uniqueToken stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     
     NSManagedObjectID *objectID = [self.persistentStoreCoordinator managedObjectIDForURIRepresentation:url];
     
-    THCoreDataThought *thought = (THCoreDataThought *)[self.managedObjectContext objectWithID:objectID];
+    TYCoreDataThought *thought = (TYCoreDataThought *)[self.managedObjectContext objectWithID:objectID];
     thought.thoughtContext = self;
     
     return thought;
 }
 
--(THCoreDataThought *)createThoughtWithSpecification:(THThoughtSpecification *)thoughtSpecification
+-(TYCoreDataThought *)createThoughtWithSpecification:(TYThoughtSpecification *)thoughtSpecification
 {
-    THCoreDataThought *firstThought = [self anyThought];
+    TYCoreDataThought *firstThought = [self anyThought];
     
     if(firstThought) {
         return [self createThoughtWithSpecification:thoughtSpecification afterThought:firstThought.nextThought];
@@ -96,7 +96,7 @@ static NSString * const kThoughtsDataModelFileName = @"Thoughts";
     
     //Start new chain
     
-    THCoreDataThought *newThought = [self newThoughtWithSpecification:thoughtSpecification];
+    TYCoreDataThought *newThought = [self newThoughtWithSpecification:thoughtSpecification];
     newThought.nextThought = newThought;
     newThought.previousThought = newThought;
     
@@ -108,7 +108,7 @@ static NSString * const kThoughtsDataModelFileName = @"Thoughts";
 
 #pragma mark - Public Methods
 
--(NSString *)uniqueTokenForThought:(THCoreDataThought *)thought
+-(NSString *)uniqueTokenForThought:(TYCoreDataThought *)thought
 {
     if(![self containsThought:thought]) {
         return nil;
@@ -117,16 +117,16 @@ static NSString * const kThoughtsDataModelFileName = @"Thoughts";
     return [thought.objectID.URIRepresentation absoluteString];
 }
 
--(THCoreDataThought *)createThoughtWithSpecification:(THThoughtSpecification *)thoughtSpecification afterThought:(THCoreDataThought *)thought
+-(TYCoreDataThought *)createThoughtWithSpecification:(TYThoughtSpecification *)thoughtSpecification afterThought:(TYCoreDataThought *)thought
 {
     if(![self containsThought:thought]) {
         return nil;
     }
     
-    THCoreDataThought *previousThought = thought;
-    THCoreDataThought *nextThought = previousThought.nextThought;
+    TYCoreDataThought *previousThought = thought;
+    TYCoreDataThought *nextThought = previousThought.nextThought;
     
-    THCoreDataThought *newThought = [self newThoughtWithSpecification:thoughtSpecification];
+    TYCoreDataThought *newThought = [self newThoughtWithSpecification:thoughtSpecification];
     newThought.previousThought = previousThought;
     newThought.nextThought = nextThought;
     
@@ -138,15 +138,15 @@ static NSString * const kThoughtsDataModelFileName = @"Thoughts";
     return newThought;
 }
 
--(void)removeThought:(THCoreDataThought *)thought
+-(void)removeThought:(TYCoreDataThought *)thought
 {
     if(![self containsThought:thought]) {
         return;
     }
     
     //Pop out of linked list
-    THCoreDataThought *previousThought = thought.previousThought;
-    THCoreDataThought *nextThought = thought.nextThought;
+    TYCoreDataThought *previousThought = thought.previousThought;
+    TYCoreDataThought *nextThought = thought.nextThought;
 
     previousThought.nextThought = nextThought;
     nextThought.previousThought = previousThought;
@@ -159,7 +159,7 @@ static NSString * const kThoughtsDataModelFileName = @"Thoughts";
 
 #pragma mark - Private Helpers
 
--(BOOL)containsThought:(THCoreDataThought *)thought
+-(BOOL)containsThought:(TYCoreDataThought *)thought
 {
     if(thought.managedObjectContext == self.managedObjectContext) {
         return YES;
@@ -168,9 +168,9 @@ static NSString * const kThoughtsDataModelFileName = @"Thoughts";
     return NO;
 }
 
--(THCoreDataThought *)newThoughtWithSpecification:(THThoughtSpecification *)thoughtSpecification
+-(TYCoreDataThought *)newThoughtWithSpecification:(TYThoughtSpecification *)thoughtSpecification
 {
-    THCoreDataThought *newThought = [NSEntityDescription insertNewObjectForEntityForName:[THCoreDataThought coreDataEntityName] inManagedObjectContext:self.managedObjectContext];
+    TYCoreDataThought *newThought = [NSEntityDescription insertNewObjectForEntityForName:[TYCoreDataThought coreDataEntityName] inManagedObjectContext:self.managedObjectContext];
     
     newThought.thoughtContext = self;
     

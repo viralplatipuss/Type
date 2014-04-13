@@ -1,15 +1,14 @@
 //
-//  THAssembly.h
-//  Thoughts
+//  TYDefaultAssembly.h
+//  Type
 //
 //  Created by Dom Chapman on 3/12/14.
 //  Copyright (c) 2014 Dom Chapman. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+#import "TYAssembly.h"
 
-@protocol THAssembly <NSObject>
-
-@property (nonatomic, strong, readonly) UIViewController *viewController;
+@interface TYDefaultAssembly : NSObject <TYAssembly>
 
 @end

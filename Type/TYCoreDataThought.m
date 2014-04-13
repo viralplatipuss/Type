@@ -1,14 +1,14 @@
 //
-//  THCoreDataThought.m
-//  Thoughts
+//  TYCoreDataThought.m
+//  Type
 //
 //  Created by Dom Chapman on 3/13/14.
 //  Copyright (c) 2014 Dom Chapman. All rights reserved.
 //
 
-#import "THCoreDataThought.h"
+#import "TYCoreDataThought.h"
 
-@implementation THCoreDataThought
+@implementation TYCoreDataThought
 
 @dynamic text;
 @dynamic nextThought;
@@ -18,7 +18,7 @@
 
 +(NSString *)coreDataEntityName
 {
-    return [[THCoreDataThought class] description];
+    return [[TYCoreDataThought class] description];
 }
 
 -(NSString *)uniqueToken
@@ -28,7 +28,7 @@
     return [self.thoughtContext uniqueTokenForThought:self];
 }
 
--(id <THThought>)createThoughtAfterThisWithSpecification:(THThoughtSpecification *)thoughtSpecification
+-(id <TYThought>)createThoughtAfterThisWithSpecification:(TYThoughtSpecification *)thoughtSpecification
 {
     if(!self.thoughtContext) return nil;
     return [self.thoughtContext createThoughtWithSpecification:thoughtSpecification afterThought:self];
@@ -40,17 +40,17 @@
     [self.thoughtContext removeThought:self];
 }
 
--(THCoreDataThought *)nextThought
+-(TYCoreDataThought *)nextThought
 {
-    THCoreDataThought *thought = [self primitiveValueForKey:@"nextThought"];
+    TYCoreDataThought *thought = [self primitiveValueForKey:@"nextThought"];
     thought.thoughtContext = self.thoughtContext;
     
     return thought;
 }
 
--(THCoreDataThought *)previousThought
+-(TYCoreDataThought *)previousThought
 {
-    THCoreDataThought *thought = [self primitiveValueForKey:@"previousThought"];
+    TYCoreDataThought *thought = [self primitiveValueForKey:@"previousThought"];
     thought.thoughtContext = self.thoughtContext;
     
     return thought;

@@ -1,22 +1,22 @@
 //
-//  THAppDelegate.m
-//  Thoughts
+//  TYAppDelegate.m
+//  Type
 //
 //  Created by Dom Chapman on 3/13/14.
 //  Copyright (c) 2014 Dom Chapman. All rights reserved.
 //
 
-#import "THAppDelegate.h"
-#import "THDefaultAssembly.h"
+#import "TYAppDelegate.h"
+#import "TYDefaultAssembly.h"
 
-@implementation THAppDelegate
+@implementation TYAppDelegate
 
 -(void)startApp
 {
     self.window.backgroundColor = [UIColor blackColor];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
-    id <THAssembly> assembly = [THDefaultAssembly new];
+    id <TYAssembly> assembly = [TYDefaultAssembly new];
     self.window.rootViewController = assembly.viewController;
 }
 

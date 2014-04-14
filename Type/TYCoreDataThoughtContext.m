@@ -182,7 +182,8 @@ static NSString * const kThoughtsDataModelFileName = @"Thoughts";
     
     newThought.thoughtContext = self;
     
-    newThought.text = thoughtSpecification.text;
+    //Apply specification
+    newThought.text = [thoughtSpecification.text copy];
     
     return newThought;
 }

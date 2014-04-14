@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F266091818DA08800062A7B3 /* NSString+WordWrappedLineBreaks.m in Sources */ = {isa = PBXBuildFile; fileRef = F266091718DA08800062A7B3 /* NSString+WordWrappedLineBreaks.m */; };
 		F266EACA18FB348C00C1D0A3 /* TYUserDefaultsStringPersistor.m in Sources */ = {isa = PBXBuildFile; fileRef = F266EAC918FB348C00C1D0A3 /* TYUserDefaultsStringPersistor.m */; };
+		F266EACF18FB6A0000C1D0A3 /* TYCoreDataThoughtContextTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F266EACE18FB6A0000C1D0A3 /* TYCoreDataThoughtContextTests.m */; };
 		F27FC52918F24353005AF1B6 /* TYSlidingTextPositionTransitionView.m in Sources */ = {isa = PBXBuildFile; fileRef = F27FC52818F24353005AF1B6 /* TYSlidingTextPositionTransitionView.m */; };
 		F27FC53018F38E5D005AF1B6 /* TYMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F27FC52F18F38E5D005AF1B6 /* TYMainViewController.m */; };
 		F2827D7D18D2064E00B97876 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2827D7C18D2064E00B97876 /* Foundation.framework */; };
@@ -31,7 +32,6 @@
 		F28F2FB018F71F30004ECFEB /* TYMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = F28F2FAF18F71F30004ECFEB /* TYMainView.m */; };
 		F2A7280618E2EFCC0083E4A6 /* TYMovableCharactersLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A7280518E2EFCC0083E4A6 /* TYMovableCharactersLayer.m */; };
 		F2A7280918E32A070083E4A6 /* TYMovableCharactersLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A7280818E32A070083E4A6 /* TYMovableCharactersLabel.m */; };
-		F2B33C1A18D4C8F700DBF058 /* THCoreDataThoughtContextTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B33C1918D4C8F700DBF058 /* THCoreDataThoughtContextTests.m */; };
 		F2B7118C18DB81D900E88E34 /* MTRandom.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B7118B18DB81D900E88E34 /* MTRandom.m */; };
 		F2B7118F18DC5BFF00E88E34 /* NSMutableArray+pseudoRandomShuffle.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B7118E18DC5BFF00E88E34 /* NSMutableArray+pseudoRandomShuffle.m */; };
 		F2B7119218DC95C900E88E34 /* TYUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B7119118DC95C900E88E34 /* TYUtils.m */; };
@@ -62,6 +62,7 @@
 		F266EAC618FB345400C1D0A3 /* TYStringPersistor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TYStringPersistor.h; sourceTree = "<group>"; };
 		F266EAC818FB348C00C1D0A3 /* TYUserDefaultsStringPersistor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYUserDefaultsStringPersistor.h; sourceTree = "<group>"; };
 		F266EAC918FB348C00C1D0A3 /* TYUserDefaultsStringPersistor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYUserDefaultsStringPersistor.m; sourceTree = "<group>"; };
+		F266EACE18FB6A0000C1D0A3 /* TYCoreDataThoughtContextTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYCoreDataThoughtContextTests.m; sourceTree = "<group>"; };
 		F27FC52718F24353005AF1B6 /* TYSlidingTextPositionTransitionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYSlidingTextPositionTransitionView.h; sourceTree = "<group>"; };
 		F27FC52818F24353005AF1B6 /* TYSlidingTextPositionTransitionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYSlidingTextPositionTransitionView.m; sourceTree = "<group>"; };
 		F27FC52E18F38E5D005AF1B6 /* TYMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYMainViewController.h; sourceTree = "<group>"; };
@@ -97,7 +98,6 @@
 		F2A7280518E2EFCC0083E4A6 /* TYMovableCharactersLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYMovableCharactersLayer.m; sourceTree = "<group>"; };
 		F2A7280718E32A070083E4A6 /* TYMovableCharactersLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYMovableCharactersLabel.h; sourceTree = "<group>"; };
 		F2A7280818E32A070083E4A6 /* TYMovableCharactersLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYMovableCharactersLabel.m; sourceTree = "<group>"; };
-		F2B33C1918D4C8F700DBF058 /* THCoreDataThoughtContextTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THCoreDataThoughtContextTests.m; sourceTree = "<group>"; };
 		F2B7118A18DB81D900E88E34 /* MTRandom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTRandom.h; sourceTree = "<group>"; };
 		F2B7118B18DB81D900E88E34 /* MTRandom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTRandom.m; sourceTree = "<group>"; };
 		F2B7118D18DC5BFF00E88E34 /* NSMutableArray+pseudoRandomShuffle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+pseudoRandomShuffle.h"; sourceTree = "<group>"; };
@@ -329,7 +329,7 @@
 		F2827DA118D2064E00B97876 /* TypeTests */ = {
 			isa = PBXGroup;
 			children = (
-				F2B33C1918D4C8F700DBF058 /* THCoreDataThoughtContextTests.m */,
+				F266EACE18FB6A0000C1D0A3 /* TYCoreDataThoughtContextTests.m */,
 				F2827DA218D2064E00B97876 /* Supporting Files */,
 			);
 			path = TypeTests;
@@ -604,7 +604,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F2B33C1A18D4C8F700DBF058 /* THCoreDataThoughtContextTests.m in Sources */,
+				F266EACF18FB6A0000C1D0A3 /* TYCoreDataThoughtContextTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -744,12 +744,12 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Thoughts/Type-Prefix.pch";
+				GCC_PREFIX_HEADER = "Type/Type-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "ThoughtsTests/TypeTests-Info.plist";
+				INFOPLIST_FILE = "TypeTests/TypeTests-Info.plist";
 				PRODUCT_NAME = TypeTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -766,8 +766,8 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Thoughts/Type-Prefix.pch";
-				INFOPLIST_FILE = "ThoughtsTests/TypeTests-Info.plist";
+				GCC_PREFIX_HEADER = "Type/Type-Prefix.pch";
+				INFOPLIST_FILE = "TypeTests/TypeTests-Info.plist";
 				PRODUCT_NAME = TypeTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;

@@ -16,7 +16,7 @@
 
 -(id <TYThought>)thoughtForUnqiueToken:(NSString *)uniqueToken;
 
-//Will create thought at the end of the chain. Or start the chain if it does not exist.
+//Will create thought in the chain. Or start the chain if it does not exist.
 -(id <TYThought>)createThoughtWithSpecification:(TYThoughtSpecification *)thoughtSpecification;
 
 @end

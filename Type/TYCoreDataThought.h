@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-#import "TYCoreDataThoughtContext.h"
+#import "TYThought.h"
+
+@class TYCoreDataThoughtContext;
 
 @interface TYCoreDataThought : NSManagedObject <TYThought>
 
@@ -18,7 +20,8 @@
 
 @property (nonatomic, strong, readwrite) TYCoreDataThought *previousThought;
 
-@property (nonatomic, strong, readwrite) TYCoreDataThoughtContext *thoughtContext; //strong?
+@property (nonatomic, strong, readwrite) TYCoreDataThoughtContext *thoughtContext;
+
 
 +(NSString *)coreDataEntityName;
 

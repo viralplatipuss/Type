@@ -7,6 +7,7 @@
 //
 
 #import "TYCoreDataThought.h"
+#import "TYCoreDataThoughtContext.h"
 
 @implementation TYCoreDataThought
 

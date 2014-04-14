@@ -8,8 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "TYThoughtContext.h"
-
-@class TYCoreDataThought;
+#import "TYCoreDataThought.h"
 
 @interface TYCoreDataThoughtContext : NSObject <TYThoughtContext>
 
@@ -19,7 +18,9 @@
 
 -(NSString *)uniqueTokenForThought:(TYCoreDataThought *)thought;
 
--(id <TYThought>)createThoughtWithSpecification:(TYThoughtSpecification *)thoughtSpecification afterThought:(TYCoreDataThought *)thought;
+-(TYCoreDataThought *)createThoughtWithSpecification:(TYThoughtSpecification *)thoughtSpecification;
+
+-(TYCoreDataThought *)createThoughtWithSpecification:(TYThoughtSpecification *)thoughtSpecification afterThought:(TYCoreDataThought *)thought;
 
 -(void)removeThought:(TYCoreDataThought *)thought;
 

@@ -17,7 +17,9 @@
 
 @property (nonatomic, strong, readonly) id <TYThought> previousThought;
 
+
 -(NSString *)uniqueToken;
+
 
 -(id <TYThought>)createThoughtAfterThisWithSpecification:(TYThoughtSpecification *)thoughtSpecification;
 
